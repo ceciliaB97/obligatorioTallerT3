@@ -1,7 +1,7 @@
 const appStyle = {
-    height: "250px",
-    display: "flex",
-    backgroundColor: 'red',
+    height: "100vh",
+    /*display: "flex",*/
+    backgroundColor: 'lightblue',
     padding: '5%',
   };
   
@@ -10,9 +10,11 @@ const appStyle = {
     padding: "10px",
     border: "1px solid #c9c9c9",
     borderRadius: "5px",
-    background: "#f5f5f5",
+    /*background: "#f5f5f5",*/
+    background:"white",
     width: "220px",
     display: "block",
+    marginTop:'25%'
   };
   
   const labelStyle = {
@@ -35,7 +37,8 @@ const appStyle = {
     padding: "7px 10px",
     border: "1px solid #efffff",
     borderRadius: "3px",
-    background: "#3085d6",
+    /*background: "#3085d6",*/
+    background:"white",
     width: "100%",
     fontSize: "15px",
     color: "white",

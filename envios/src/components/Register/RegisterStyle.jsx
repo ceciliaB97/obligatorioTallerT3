@@ -1,8 +1,10 @@
 const appStyle = {
     height: "250px",
     display: "flex",
-    backgroundColor: 'pink',
+  /*  backgroundColor: 'pink',*/
+    backgroundColor:'lightgray',
     padding: '5%'
+    /*display:'none'*/
   };
   
   const formStyle = {

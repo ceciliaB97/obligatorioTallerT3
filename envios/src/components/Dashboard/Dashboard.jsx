@@ -1,11 +1,11 @@
 import "./Dashboard.css";
-
-const DashboardContent = () => {
+import React from "react"; 
+const Dashboard = () => {
   return (
-    <div class="dashboardScreen">
+    <div className="dashboardScreen">
         This is the dashboard screen.
     </div>
   );
 };
 
-export default DashboardContent;
+export default Dashboard;

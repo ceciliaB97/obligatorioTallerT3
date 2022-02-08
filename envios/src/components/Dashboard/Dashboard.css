@@ -1,5 +1,6 @@
 .dashboardScreen {
     color: white;
-    background-color: blue;
+    background-color: lightblue;
     padding: 10%;
+   /* display: none;*/
 }
