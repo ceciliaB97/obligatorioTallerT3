@@ -1,5 +1,5 @@
 const appStyle = {
-    height: "100vh",
+    height: "92.9vh",
     display: "flex",
     backgroundColor: 'lightblue',
     padding: 'auto',
@@ -14,7 +14,6 @@ const appStyle = {
     background:"white",
     width: "220px",
     display: "block",
-    marginTop:'25%'
   };
   
   const labelStyle = {
