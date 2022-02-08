@@ -1,8 +1,8 @@
 const appStyle = {
     height: "100vh",
-    /*display: "flex",*/
+    display: "flex",
     backgroundColor: 'lightblue',
-    padding: '5%',
+    padding: 'auto',
   };
   
   const formStyle = {
@@ -37,8 +37,7 @@ const appStyle = {
     padding: "7px 10px",
     border: "1px solid #efffff",
     borderRadius: "3px",
-    /*background: "#3085d6",*/
-    background:"white",
+    background: "#3085d6",
     width: "100%",
     fontSize: "15px",
     color: "white",
