@@ -3,32 +3,30 @@ import { onRegister } from "../../../services";
 import React, { useRef, useState } from "react";
 
 export const Form = () => {
-
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
   const inputPasswordConfirmRef = useRef();
 
   const handleSubmit = (e) => {
+    e.preventDefault();
 
     const username = inputUsernameRef.current.value;
     const password = inputPasswordRef.current.value;
     const passwordConfirm = inputPasswordConfirmRef.current.value;
 
     if (username === "" || password === "") {
-      alert("Por favor no dejar campos vacíos");
+      return alert("Por favor no dejar campos vacíos");
     }
 
     if (password !== passwordConfirm) {
-      alert("Contraseñas deben ser iguales");
+      return alert("Contraseñas deben ser iguales");
     } else {
-      
-      e.preventDefault();
       const data = {
         usuario: inputUsernameRef.current.value,
         password: inputPasswordRef.current.value,
         password2: inputPasswordConfirmRef.current.value,
       };
-      onRegister(data);
+      return onRegister(data);
     }
   };
 
@@ -40,7 +38,7 @@ export const Form = () => {
 
   return (
     <div className="card">
-      <h2>Sign in</h2>
+      <h2>Sign up</h2>
       <span>Bienvenido {userNameValue}</span>
       <section className="card-body">
         <form onSubmit={handleSubmit}>

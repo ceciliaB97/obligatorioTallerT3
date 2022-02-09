@@ -1,5 +1,6 @@
 section.register {
-  margin-top: 15%;
+  margin-top: 8%;
+  margin-bottom: 5%;
 }
 
 section.register > div.card {
@@ -8,4 +9,12 @@ section.register > div.card {
 
 section.register label {
   font-size: 14px;
+}
+
+body {
+  background-image: url(https://media.istockphoto.com/vectors/delivery-box-background-cargo-package-seamless-pattern-various-open-vector-id1200682232?k=20&m=1200682232&s=612x612&w=0&h=idbwd4EhzJ3i223gHN1m2kXfmekNKa1sGptOPFXmaB4=);
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%);
+  background-repeat: initial;
 }
