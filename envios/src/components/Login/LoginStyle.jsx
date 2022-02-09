@@ -1,7 +1,8 @@
 const appStyle = {
     height: "100vh",
+    zoom:"125%",
     /*display: "flex",*/
-    backgroundColor: 'lightblue',
+    backgroundColor: 'white',
     padding: '5%',
   };
   
@@ -14,7 +15,7 @@ const appStyle = {
     background:"white",
     width: "220px",
     display: "block",
-    marginTop:'25%'
+    marginTop:'5%'
   };
   
   const labelStyle = {
@@ -37,8 +38,8 @@ const appStyle = {
     padding: "7px 10px",
     border: "1px solid #efffff",
     borderRadius: "3px",
-    /*background: "#3085d6",*/
-    background:"white",
+    background: "#3085d6",
+    /*background:"white",*/
     width: "100%",
     fontSize: "15px",
     color: "white",

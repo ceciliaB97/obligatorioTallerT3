@@ -1,3 +1,4 @@
+import "bootstrap-css-only";
 import "./App.css";
 import LoginContent  from "../Login";
 import RegisterContent from "../Register";
