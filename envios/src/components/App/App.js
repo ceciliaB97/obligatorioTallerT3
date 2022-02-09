@@ -8,15 +8,16 @@ import React from "react";
 function App() {
   return (
     <div className="App">
-      <nav>
-        <p>Env&iacute;os</p>
-      </nav>
-      <LoginContent />
+     
+      <LoginContent titleLogin="Super Envios Login" />
     </div>
   );
 }
 
 /*
+ <nav>
+        <p>Env&iacute;os</p>
+      </nav>
   <RegisterContent/>
       <Dashboard/>
 */

@@ -27,7 +27,7 @@ const Form = ({ onSubmit }) => {
     <form style={formStyle} onSubmit={handleSubmit}>
       <Field ref={usernameRef} label="Username:" type="text" />
       <Field ref={passwordRef} label="Password:" type="password" />
-      <Field ref={passwordRef} label="Password:" type="password" />
+      <Field ref={passwordRef} label="Confirm Password:" type="password" />
       <div>
         <button style={submitStyle} type="submit">
           Register
