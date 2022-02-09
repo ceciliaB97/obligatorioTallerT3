@@ -1,4 +1,5 @@
 import React from "react";
+import { onLogin } from "../../../services";
 import Field from "./Field/field";
 import { formStyle,submitStyle } from "./LoginStyle";
 
@@ -11,7 +12,7 @@ const Form = ({titleStr, onSubmit }) => {
       usuario: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    onSubmit(data);
+    onLogin(data);
   };
   return (
     <>

@@ -3,9 +3,34 @@ import { onRegister } from "../../../services";
 import React, { useRef, useState } from "react";
 
 export const Form = () => {
+
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
   const inputPasswordConfirmRef = useRef();
+
+  const handleSubmit = (e) => {
+
+    const username = inputUsernameRef.current.value;
+    const password = inputPasswordRef.current.value;
+    const passwordConfirm = inputPasswordConfirmRef.current.value;
+
+    if (username === "" || password === "") {
+      alert("Por favor no dejar campos vacíos");
+    }
+
+    if (password !== passwordConfirm) {
+      alert("Contraseñas deben ser iguales");
+    } else {
+      
+      e.preventDefault();
+      const data = {
+        usuario: inputUsernameRef.current.value,
+        password: inputPasswordRef.current.value,
+        password2: inputPasswordConfirmRef.current.value,
+      };
+      onRegister(data);
+    }
+  };
 
   const [userNameValue, setUsernameValue] = useState("");
 
@@ -13,38 +38,12 @@ export const Form = () => {
     setUsernameValue(e.target.value);
   };
 
-  const onRegisterSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputPasswordRef.current.value);
-    console.log(inputUsernameRef.current.value);
-
-    const username = inputUsernameRef.current.value;
-    const password = inputPasswordRef.current.value;
-    const passwordConfirm = inputPasswordConfirmRef.current.value;
-
-    if (username === "") {
-      alert("Por favor ingresar un nombre de usuario");
-    }
-
-    if (password === "") {
-      alert("Por favor ingresar una contraseña");
-    }
-
-    if (password !== passwordConfirm) {
-      alert("Contraseñas deben ser iguales");
-    } else {
-      console.log("Todo ok");
-      const user = { name: username, pass: password };
-      onRegister(user);
-    }
-  };
-
   return (
     <div className="card">
       <h2>Sign in</h2>
       <span>Bienvenido {userNameValue}</span>
       <section className="card-body">
-        <form>
+        <form onSubmit={handleSubmit}>
           <label htmlFor="inputEmail">Username</label>
           <br />
           <input
@@ -74,9 +73,7 @@ export const Form = () => {
             ref={inputPasswordConfirmRef}
           />
           <br />
-          <button className="btn btn-primary" onClick={onRegisterSubmit}>
-            Register
-          </button>
+          <button className="btn btn-primary">Register</button>
           <br />
           <br />
         </form>
