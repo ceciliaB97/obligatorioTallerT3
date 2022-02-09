@@ -1,0 +1,11 @@
+section.register {
+  margin-top: 15%;
+}
+
+section.register > div.card {
+  padding: 20px !important;
+}
+
+section.register label {
+  font-size: 14px;
+}

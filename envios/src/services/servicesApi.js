@@ -1,10 +1,10 @@
-const onLogin= (data) => {
-    console.log(data);
-  alert("hola soy la api");   
-}
+const onLogin = (data) => {
+  console.log(data);
+  alert("hola soy la api");
+};
 
-const onRegister=() => {
-   alert("hola soy la api register"); 
-}
+const onRegister = () => {
+  alert("hola soy la api register");
+};
 
-export {onLogin, onRegister};
+export { onLogin, onRegister };
