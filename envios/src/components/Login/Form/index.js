@@ -1,2 +1,2 @@
-import Form from "./form";
+import Form from "./formLogin";
 export default Form;

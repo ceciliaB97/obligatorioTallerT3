@@ -1,16 +1,25 @@
 import "bootstrap-css-only";
 import "./App.css";
 import LoginContent from "../Login";
- import RegisterContent from "../Register";
-// import Dashboard from "../Dashboard";
-import React from "react";
+// import RegisterContent from "../Register";
+import Dashboard from "../Dashboard";
+import React, { useState } from "react";
 
 function App() {
+  const [userLogged, setUserLogged] = useState(null);
+
+  const onUserLogged = (user) => {
+    setUserLogged(user);
+  };
+
   return (
     <>
-     
-      {/*<LoginContent titleLogin="Super Envios Login" />*/ }
-      <RegisterContent/>
+      {/*<LoginContent titleLogin="Super Envios Login" />*/}
+      {!userLogged ? (
+        <LoginContent titleStr="SuperEnvios Login" onUserLogged={onUserLogged} />
+      ) : (
+        <Dashboard userLogged={userLogged} />
+      )}
     </>
   );
 }
