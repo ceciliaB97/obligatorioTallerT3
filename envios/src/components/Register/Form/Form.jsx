@@ -38,8 +38,10 @@ export const Form = () => {
 
   return (
     <div className="card">
-      <h2>Sign up</h2>
-      <span>Bienvenido {userNameValue}</span>
+      <div className="justify-content-center text-center">
+        <h2>Sign up</h2>
+        <span>Bienvenido {userNameValue}</span>
+      </div>
       <section className="card-body">
         <form onSubmit={handleSubmit}>
           <label htmlFor="inputEmail">Username</label>

@@ -1,21 +1,21 @@
 import "bootstrap-css-only";
 import "./App.css";
-// import LoginContent from "../Login";
+import LoginContent from "../Login";
  import RegisterContent from "../Register";
 // import Dashboard from "../Dashboard";
 import React from "react";
 
 function App() {
   return (
-    <div className="f">
+    <>
      
-      {/* <LoginContent titleLogin="Super Envios Login" /> */}
+      {/*<LoginContent titleLogin="Super Envios Login" />*/ }
       <RegisterContent/>
-    </div>
+    </>
   );
 }
 
-/*
+/* className="f"
  <nav>
         <p>Env&iacute;os</p>
       </nav>

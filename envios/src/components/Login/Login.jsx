@@ -4,8 +4,8 @@ import { onLogin } from "../../services/servicesApi";
 import Form from "./Form";
 const LoginContent = ({titleLogin}) => {
    const handleSubmit = data => {
-        const json = JSON.stringify(data, null, 4);
-        onLogin(json);
+       // const json = JSON.stringify(data, null, 4);
+        onLogin(data);
     };
     return (
       <div style={appStyle}>

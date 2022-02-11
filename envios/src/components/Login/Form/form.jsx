@@ -12,7 +12,11 @@ const Form = ({titleStr, onSubmit }) => {
       usuario: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    onLogin(data);
+    onLogin(data).then(data => {
+      console.log(data);
+    }).catch(e =>e => {
+      console.error(e);
+    });
   };
   return (
     <>
