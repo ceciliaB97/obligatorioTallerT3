@@ -1,7 +1,7 @@
 import "bootstrap-css-only";
 import "./App.css";
 import LoginContent from "../Login";
-// import RegisterContent from "../Register";
+ import RegisterContent from "../Register";
 import Dashboard from "../Dashboard";
 import React, { useState } from "react";
 
@@ -19,14 +19,25 @@ function App() {
     }
   };
 
+  const [register, setRegister] = useState(false);
+
+  const onClickRegister = () => {
+    setRegister(!register);
+  }
+
   return (
     <>
+     <div className="justify-content-top text-right col-12 mt-3">
+       { (!register ? <a className="link link-primary" href="#" onClick={onClickRegister}>Sign Up!</a> : <></> )}
+     </div>
       {/*<LoginContent titleLogin="Super Envios Login" />*/}
       {userLogged === null ? (
-        <LoginContent titleStr="SuperEnvios Login" onUserLogged={onUserLogged} />
+         ( !register ? <LoginContent titleStr="SuperEnvios Login" onUserLogged={onUserLogged} />  : <RegisterContent />)
       ) : (
         <Dashboard userLogged={userLogged} />
       )}
+
+     
     </>
   );
 }

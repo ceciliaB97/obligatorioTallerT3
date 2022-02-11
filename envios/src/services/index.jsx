@@ -1,2 +1,2 @@
-import { onLogin, onRegister, getListaEnvios} from "./servicesApi";
-export { onLogin,onRegister, getListaEnvios };
+import { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios,getCiudadOrigen} from "./servicesApi";
+export { onLogin,onRegister,onAgregarEnvio,getCategorias, getListaEnvios,getCiudadOrigen };

@@ -2,7 +2,7 @@ import "../RegisterStyle.css";
 import { onRegister } from "../../../services";
 import React, { useRef, useState } from "react";
 
-export const Form = () => {
+export const FormRegister = () => {
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
   const inputPasswordConfirmRef = useRef();
@@ -15,25 +15,26 @@ export const Form = () => {
     const passwordConfirm = inputPasswordConfirmRef.current.value;
 
     if (username === "" || password === "") {
-      return alert("Por favor no dejar campos vacíos");
+      alert("Por favor no dejar campos vacíos");
     }
 
     if (password !== passwordConfirm) {
-      return alert("Contraseñas deben ser iguales");
+      alert("Contraseñas deben ser iguales");
     } else {
       const data = {
         usuario: inputUsernameRef.current.value,
         password: inputPasswordRef.current.value,
         password2: inputPasswordConfirmRef.current.value,
       };
-      return onRegister(data)
+      
+      onRegister(data)
         .then((user) => {
           console.log("user on then", user);
-          return (
-            <>
-              <LoginContent titleStr="SuperEnvios Login" onUserLogged={null} />
-            </>
-          );
+          // return (
+          //   <>
+          //     <LoginContent titleStr="SuperEnvios Login" onUserLogged={null} />
+          //   </>
+          // );
         })
         .catch((error) => {
           console.error(error);
@@ -93,4 +94,4 @@ export const Form = () => {
   );
 };
 
-export default Form;
+export default FormRegister;

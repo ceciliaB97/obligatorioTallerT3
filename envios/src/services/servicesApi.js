@@ -48,6 +48,7 @@ const onRegister = (data) => {
     });
 };
 
+//obtener la lista de todos los envios para un usuario
 const getListaEnvios = (data) => {
   return fetch(`${BASE_URL}/envios.php?idUsuario=${data.id}`, {
     method: "GET",
@@ -72,14 +73,71 @@ const getListaEnvios = (data) => {
     });
 };
 
+//Agregar un nuevo envio
+const onAgregarEnvio = ( {dataEnvio,apiKey}) => {
+  return fetch(`${BASE_URL}/envios.php`, {
+    method: "POST",
+    body: JSON.stringify(dataEnvio),
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json(); /*{ "idEnvio": _,"mensaje": "_", "codigo": _}*/ 
+      } else
+        return {
+          message: "Ha occurrido un error al traer los envíos",
+          status: response.status,
+        };
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+};
+
+//Eliminar un envio existente
+const onEliminarEnvio = ( {dataEnvio,apiKey}) => {
+  return fetch(`${BASE_URL}/envios.php`, {
+    method: "DELETE",
+    body: JSON.stringify(dataEnvio),
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json(); /*{
+          "idEnvio": 10,
+          "codigo": 200,
+          "mensaje": "Envío eliminado con éxito"
+      }*/ 
+      } else
+        return {
+          message: "Ha occurrido un error al tratar de eliminar el envio",
+          status: response.status,
+        };
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+};
+
+
 //data = { ciudadOrigen, apiKey }
 
-const getCiudadOrigen = (data) => {
-  return fetch(`${BASE_URL}/ciudades.php?idDepartamento=3203${data.ciudadOrigen}`, {
+const getCiudadOrigen = ({ciudadOrigen,apiKey}) => {
+  return fetch(`${BASE_URL}/ciudades.php?idDepartamento=${ciudadOrigen}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      "apiKey": `${data.apiKey}`,
+      "apiKey": `${apiKey}`,
     },
   })
     .then((response) => {
@@ -98,4 +156,30 @@ const getCiudadOrigen = (data) => {
     });
 }
 
-export { onLogin, onRegister, getListaEnvios, getPais };
+
+//obtener la lista de todas las categorias
+const getCategorias = (apiKey) => {
+  return fetch(`${BASE_URL}/categorias.php`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else
+        return {
+          message: "Ha occurrido un error al traer las categorias",
+          status: response.status,
+        };
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+};
+
+export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudadOrigen };

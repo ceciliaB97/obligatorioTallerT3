@@ -1,16 +1,16 @@
 import React from "react";
 import "./RegisterStyle.css";
-import Form from "./Form";
-import { onRegister } from "../../services";
+import FormRegister from "./FormRegister";
+// import { onRegister } from "../../services";
 
 // import ReactDOM from "react-dom";
-export const Register = () => {
+export const RegisterContent = () => {
   
   return (
     <section className="d-flex flex-md justify-content-center register">
-      <Form onSubmit={handleSubmit}/>
+      <FormRegister />
     </section>
   );
 };
 
-export default Register;
+export default RegisterContent;

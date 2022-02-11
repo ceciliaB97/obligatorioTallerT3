@@ -1,23 +1,29 @@
 import "./Dashboard.css";
 import React, { useEffect, useState } from "react";
-import { getListaEnvios } from "../../services";
+import { getListaEnvios,getCategorias } from "../../services";
 import ListaEnviosContent from "./ListaEnvios/ListaEnvios";
 
 const Dashboard = ({ userLogged }) => {
   const [listaEnvios, setListaEnvios] = useState([]);
-
+  const [listaCateg, setListaCategorias] = useState([]);
   useEffect(() => {
     (async () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
         setListaEnvios(listaEnvios.envios);
+
+        const categoriasData = await getCategorias(userLogged.apiKey);
+        setListaCategorias(categoriasData.categorias);
+        
+
       } catch (error) {
         console.log(error.message);
       }
     })();
-    // eslint-disable-next-line
   }, []);
 
+  console.log("Categorias2", listaCateg);
+  
   return (
     <div className="container-fluid dashboard">
       <h1 className="d-flex justify-content-center">Dashboard</h1>
