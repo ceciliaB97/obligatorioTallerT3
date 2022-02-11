@@ -31,12 +31,4 @@ function App() {
   );
 }
 
-/* className="f"
- <nav>
-        <p>Env&iacute;os</p>
-      </nav>
-  <RegisterContent/>
-      <Dashboard/>
-*/
-
 export default App;

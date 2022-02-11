@@ -26,7 +26,18 @@ export const Form = () => {
         password: inputPasswordRef.current.value,
         password2: inputPasswordConfirmRef.current.value,
       };
-      return onRegister(data);
+      return onRegister(data)
+        .then((user) => {
+          console.log("user on then", user);
+          return (
+            <>
+              <LoginContent titleStr="SuperEnvios Login" onUserLogged={null} />
+            </>
+          );
+        })
+        .catch((error) => {
+          console.error(error);
+        });
     }
   };
 

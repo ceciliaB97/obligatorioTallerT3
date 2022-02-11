@@ -14,7 +14,6 @@ const Form = ({ titleStr, onUserLogged }) => {
       password: passwordRef.current.value,
     };
 
-
     onLogin(data)
     .then( user => {
       console.log("user on then",user);

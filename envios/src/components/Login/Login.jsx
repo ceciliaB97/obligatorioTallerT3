@@ -1,12 +1,12 @@
-import { appStyle } from "./Form/LoginStyle";
+import { appStyle } from "./FormLogin/LoginStyle";
 import React from "react";
 // import { onLogin } from "../../services/servicesApi";
-import Form from "./Form/formLogin";
+import FormLogin from "./FormLogin/formLogin";
 const LoginContent = ({ titleLogin, onUserLogged }) => {
 
   return (
     <div style={appStyle}>
-      <Form
+      <FormLogin
         titleStr={titleLogin}
         onUserLogged={onUserLogged}
       />

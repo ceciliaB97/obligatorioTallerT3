@@ -1,2 +1,2 @@
-import { onLogin, onRegister} from "./servicesApi";
-export { onLogin,onRegister };
+import { onLogin, onRegister, getListaEnvios} from "./servicesApi";
+export { onLogin,onRegister, getListaEnvios };
