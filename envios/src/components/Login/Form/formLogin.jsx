@@ -7,22 +7,28 @@ const Form = ({ titleStr, onUserLogged }) => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     const data = {
       usuario: usernameRef.current.value,
       password: passwordRef.current.value,
     };
-    const loginData = 
-    onLogin(data);
-    console.log(loginData);
-      loginData.then((user) => {
+
+
+    onLogin(data)
+    .then( user => {
+      console.log("user on then",user);
         onUserLogged(user);
-        console.log(user);
+       
       })
-      .catch((error) => {
+      .catch( error => {
         console.error(error);
       });
+
+
+      // const loggedData = onLogin(data);
+
+      // onUserLogged(loggedData);
   };
 
   return (

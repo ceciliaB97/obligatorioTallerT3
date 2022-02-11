@@ -1,26 +1,21 @@
 const BASE_URL = "https://envios.develotion.com";
 
-const onLogin = (data) => {
-  fetch(`${BASE_URL}/login.php`, {
+let onLogin = ( data) => {
+ return fetch(`${BASE_URL}/login.php`, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((response) => {
-      if (response.status === 200) {
-        console.log(response.json());
-        return response.json();
+  }).then( response => {
+      if (response.status === 200) {        
+       return response.json();
       }
-      // else
-      //   return {
-      //     message: "Ha occurrido un error al hacer login",
-      //     status: response.status,
-      //   };
-    })
-    .then((result) => {
-      console.log("success", result);
+       else
+         return {
+           message: "Ha occurrido un error al hacer login",
+           status: response.status,
+         };
     })
     .catch((e) => {
       return {
