@@ -72,4 +72,30 @@ const getListaEnvios = (data) => {
     });
 };
 
-export { onLogin, onRegister, getListaEnvios };
+//data = { ciudadOrigen, apiKey }
+
+const getCiudadOrigen = (data) => {
+  return fetch(`${BASE_URL}/ciudades.php?idDepartamento=3203${data.ciudadOrigen}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${data.apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else
+        return {
+          message: "Ha occurrido un error al traer los envíos",
+          status: response.status,
+        };
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+}
+
+export { onLogin, onRegister, getListaEnvios, getPais };
