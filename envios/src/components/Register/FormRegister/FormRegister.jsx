@@ -23,8 +23,8 @@ export const FormRegister = () => {
     } else {
       const data = {
         usuario: inputUsernameRef.current.value,
-        password: inputPasswordRef.current.value,
-        password2: inputPasswordConfirmRef.current.value,
+        password: inputPasswordRef.current.value
+        //password2: inputPasswordConfirmRef.current.value,
       };
       
       onRegister(data)
@@ -59,7 +59,7 @@ export const FormRegister = () => {
           <label htmlFor="inputEmail">Username</label>
           <br />
           <input
-            type="email"
+            type="text"
             name="username"
             className="form-control"
             ref={inputUsernameRef}
