@@ -16,20 +16,29 @@ export const FormRegister = () => {
 
     if (username === "" || password === "") {
       alert("Por favor no dejar campos vacíos");
+      return;
+    }
+    var reg = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/; //
+    if (!reg.test(password)) {
+      alert("Password must contain 8 characters and at least one number, one letter and one unique character");
+      return;
     }
 
     if (password !== passwordConfirm) {
       alert("Contraseñas deben ser iguales");
-    } else {
+      return;
+    } 
+    
+    else {
       const data = {
         usuario: inputUsernameRef.current.value,
         password: inputPasswordRef.current.value
-        //password2: inputPasswordConfirmRef.current.value,
       };
       
       onRegister(data)
         .then((user) => {
           console.log("user on then", user);
+          alert("usuario registrado exitosamente");
           // return (
           //   <>
           //     <LoginContent titleStr="SuperEnvios Login" onUserLogged={null} />
@@ -65,6 +74,7 @@ export const FormRegister = () => {
             ref={inputUsernameRef}
             value={userNameValue}
             onChange={onUsernameChange}
+            required
           />
           <br />
           <label htmlFor="inputPassword">Password</label>
@@ -74,6 +84,7 @@ export const FormRegister = () => {
             name="password"
             className="form-control"
             ref={inputPasswordRef}
+            required
           />
           <br />
           <label htmlFor="inputPassword">Confirm Password</label>
@@ -83,6 +94,7 @@ export const FormRegister = () => {
             name="passwordConfirm"
             className="form-control"
             ref={inputPasswordConfirmRef}
+            required
           />
           <br />
           <button className="btn btn-primary">Register</button>

@@ -14,7 +14,6 @@ const Dashboard = ({ userLogged }) => {
 
         const categoriasData = await getCategorias(userLogged.apiKey);
         setListaCategorias(categoriasData.categorias);
-        
 
       } catch (error) {
         console.log(error.message);
@@ -23,6 +22,7 @@ const Dashboard = ({ userLogged }) => {
   }, []);
 
   console.log("Categorias2", listaCateg);
+  console.log("envios", listaEnvios);
   
   return (
     <div className="container-fluid dashboard">
