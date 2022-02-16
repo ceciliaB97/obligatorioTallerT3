@@ -20,6 +20,7 @@ const onLogin = (data) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -44,6 +45,7 @@ const onRegister = (data) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -69,6 +71,7 @@ const getListaEnvios = (data) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -95,6 +98,7 @@ const onAgregarEnvio = ( {dataEnvio,apiKey}) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -125,6 +129,7 @@ const onEliminarEnvio = ( {dataEnvio,apiKey}) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -145,13 +150,15 @@ const getCiudad = ({ciudadOrigen,apiKey}) => {
         return response.json();
       } else
         return Promise.reject({
-          message: "Ha occurrido un error al traer los envíos",
+          message: "Ha occurrido un error al traer ciudad",
           status: response.status,
         });
     })
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
+
       };
     });
 }
@@ -165,17 +172,19 @@ const getAllCiudades = ({apiKey}) => {
     },
   })
     .then((response) => {
+      console.log('response',response);
       if (response.status === 200) {
         return response.json();
       } else
         return Promise.reject({
-          message: "Ha occurrido un error al traer las ciudades",
+          message: `Ha occurrido un error al traer las ciudades: ${response.statusText}`,
           status: response.status,
         });
     })
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 }
@@ -202,6 +211,7 @@ const getCategorias = (apiKey) => {
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
@@ -220,13 +230,14 @@ const getDepartamentos = (apiKey) => {
         return response.json();
       } else
         return Promise.reject({
-          message: "Ha occurrido un error al traer las categorias",
+          message: `Ha occurrido un error al traer los departamentos : ${response.mensaje}`,
           status: response.status,
         });
     })
     .catch((e) => {
       return {
         message: e.message,
+        status:e.status
       };
     });
 };
