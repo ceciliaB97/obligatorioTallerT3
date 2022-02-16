@@ -13,6 +13,7 @@ const userLogged = localData ? JSON.parse(localData) : null;
 const initialState = {
   userLogged: userLogged,
   envios: [],
+  categorias:[]
 };
 
 const appReducer = (state = initialState, action) => {

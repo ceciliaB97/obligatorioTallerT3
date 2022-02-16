@@ -7,6 +7,11 @@ import { onLoadEnvios, onLoadCategorias } from "../../containers/App/actions";
 
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.userLogged);
+
+  if (userLogged ===null || !userLogged.apiKey) {
+    
+  }
+
   const envios = useSelector((state) => state.envios);
   const categorias = useSelector((state) => state.categorias); //pasar a otro componente
   const dispatch = useDispatch();
@@ -15,10 +20,12 @@ const Dashboard = () => {
     (async () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
-        dispatch(onLoadEnvios(listaEnvios));
+        console.log('listaEnviosGET',listaEnvios);
+        dispatch(onLoadEnvios(listaEnvios.envios));
 
         const categoriasData = await getCategorias(userLogged.apiKey);
-        dispatch(onLoadCategorias(categoriasData));
+        console.log('categoriasData',categoriasData);
+        dispatch(onLoadCategorias(categoriasData.categorias));
       } catch (error) {
         console.log(error.message);
       }
