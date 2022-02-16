@@ -4,11 +4,11 @@ import FormRegister from "./FormRegister";
 // import { onRegister } from "../../services";
 
 // import ReactDOM from "react-dom";
-export const RegisterContent = () => {
+export const RegisterContent = ({callback}) => {
   
   return (
     <section className="d-flex flex-md justify-content-center register">
-      <FormRegister />
+      <FormRegister callback = {callback}/>
     </section>
   );
 };
