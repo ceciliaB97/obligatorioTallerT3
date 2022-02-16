@@ -29,10 +29,10 @@ const onClickRegister = () => {
   setRegister(!register);
 }
 
-function handleErrorCallback(error,setTitle,setError) {
+function handleErrorCallback(error) {
       console.log("handleErrorMessage",error);
-      setTitle(error.title);
-      setError(error.message);
+      setErrorTitle(error.title);
+      setErrorContent(error.message);
 
       setTimeout(document.getElementById('openDialogBtn').click(),200);
       window.localStorage.removeItem('ErrorMsg');
@@ -45,7 +45,7 @@ function handleErrorCallback(error,setTitle,setError) {
      </div>
       {userLogged === null ? (
          ( !register ? <LoginContent titleStr="SuperEnvios Login" onUserLogged={onUserLogged} />  : 
-         <RegisterContent  callback={(err) => handleErrorCallback(err,setErrorTitle,setErrorContent)}/>)
+         <RegisterContent  callback={(err) => handleErrorCallback(err)}/>)
       ) : (
         <Dashboard userLogged={userLogged} />
       )}
