@@ -156,6 +156,30 @@ const getCiudad = ({ciudadOrigen,apiKey}) => {
     });
 }
 
+const getAllCiudades = ({apiKey}) => {
+  return fetch(`${BASE_URL}/ciudades.php`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else
+        return Promise.reject({
+          message: "Ha occurrido un error al traer las ciudades",
+          status: response.status,
+        });
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+}
+
 
 //obtener la lista de todas las categorias
 const getCategorias = (apiKey) => {
@@ -207,4 +231,4 @@ const getDepartamentos = (apiKey) => {
     });
 };
 
-export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudad, onEliminarEnvio, getDepartamentos };
+export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudad, onEliminarEnvio, getDepartamentos, getAllCiudades };

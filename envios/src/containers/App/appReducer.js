@@ -6,6 +6,7 @@ import {
   ON_LOAD_CIUDAD,
   ON_DELETE_ENVIO,
   ON_LOG_OUT,
+  ON_LOAD_CIUDADES,
 } from "./constants";
 
 const localData = sessionStorage.getItem("loggedUser");
@@ -15,6 +16,7 @@ const initialState = {
   userLogged: userLogged,
   envios: [],
   categorias: [],
+  ciudades: [],
   ciudad: ""
 };
 
@@ -29,6 +31,8 @@ const appReducer = (state = initialState, action) => {
       return { ...state, categorias: payload };
     case ON_LOAD_CIUDAD:
       return { ...state, ciudad: payload };
+    case ON_LOAD_CIUDADES:
+      return { ...state, ciudades: payload };
     case ON_ADD_ENVIO:
       return { ...state, envios: [...state.envios, payload] };
     case ON_DELETE_ENVIO:

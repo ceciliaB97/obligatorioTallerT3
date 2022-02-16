@@ -1,8 +1,7 @@
 import React from "react";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onDeleteEnvio, onLoadCiudad } from "../../../../containers/App/actions";
-import { onEliminarEnvio, getCiudad } from "../../../../services";
+import { onDeleteEnvio } from "../../../../containers/App/actions";
+import { onEliminarEnvio } from "../../../../services";
 
 const ListaEnviosItem = ({
   id,
@@ -23,22 +22,6 @@ const ListaEnviosItem = ({
       alert(error.message);
     }
   };
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const ciudadOrigen = await getCiudad(ciudad_origen, userLogged.apiKEy);
-  //       console.log('ciudad Origen',ciudadOrigen);
-  //       dispatch(onLoadCiudad(ciudadOrigen.ciudades.nombre));
-
-  //       const ciudadDestino = await getCiudad(ciudad_destino, userLogged.apiKey);
-  //       console.log('ciudad Desitno',ciudadDestino);
-  //       dispatch(onLoadCiudad(ciudadOrigen.ciudades.nombre));
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   })();
-  // }, []);
 
   return (
     <tr>

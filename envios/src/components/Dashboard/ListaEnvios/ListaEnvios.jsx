@@ -1,8 +1,29 @@
 import React from "react";
 import ListaEnviosItem from "./ListaItems";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { onLoadCiudades } from "../../../containers/App/actions";
+import { getAllCiudades } from "../../../services";
 
 const ListaEnviosContent = ({ listaEnvios }) => {
-  
+  const userLogged = useSelector((state) => state.userLogged);
+  const ciudades = useSelector((state) => state.ciudades);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const allCiudades = await getAllCiudades(userLogged.apiKey);
+        console.log("ciudades", ciudades);
+        dispatch(onLoadCiudades(allCiudades.ciudades));
+      } catch (error) {
+        console.log(error.message);
+      }
+    })();
+  }, []);
+
+  console.log(ciudades);
+
   return (
     <table className="table">
       <thead>
@@ -17,14 +38,13 @@ const ListaEnviosContent = ({ listaEnvios }) => {
         </tr>
       </thead>
       <tbody>
-
-        {
-        listaEnvios != null ?
-        listaEnvios.map((listaEnvios, index) => (
-          <ListaEnviosItem {...listaEnvios} key={index} />
-        )) : <></>
-      
-        }
+        {listaEnvios != null ? (
+          listaEnvios.map((listaEnvios, index) => (
+            <ListaEnviosItem {...listaEnvios} key={index} />
+          ))
+        ) : (
+          <></>
+        )}
       </tbody>
     </table>
   );

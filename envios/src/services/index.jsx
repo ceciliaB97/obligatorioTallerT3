@@ -6,6 +6,7 @@ import {
   getListaEnvios,
   getCiudad,
   onEliminarEnvio,
+  getAllCiudades
 } from "./servicesApi";
 export {
   onLogin,
@@ -15,4 +16,5 @@ export {
   getListaEnvios,
   getCiudad,
   onEliminarEnvio,
+  getAllCiudades
 };
