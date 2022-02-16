@@ -2,8 +2,21 @@ import React from "react";
 import ListaEnviosItem from "./ListaItems";
 
 const ListaEnviosContent = ({ listaEnvios }) => {
-  console.log(listaEnvios);
+  console.log("envios", listaEnvios.envios);
+
+  // listaEnvios = [{ id: 1,
+  //   ciudad_origen: "montevideo",
+  //   ciudad_destino: "paysandu",
+  //   peso: 52,
+  //   distancia: 100,
+  //   precio: 520}, { id: 1,
+  //     ciudad_origen: "montevideo",
+  //     ciudad_destino: "paysandu",
+  //     peso: 52,
+  //     distancia: 100,
+  //     precio: 520}];
   //id, ciudad_origen, ciudad_destino, peso, distancia, precio
+  
   return (
     <table className="table">
       <thead>

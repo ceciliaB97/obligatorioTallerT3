@@ -2,12 +2,15 @@ import React from "react";
 import { onLogin } from "../../../services";
 import Field from "./Field/field";
 import { formStyle, submitStyle } from "./LoginStyle";
+import { useDispatch } from "react-redux";
+import { onUserLogged } from "../../../containers/App/actions";
 
-const Form = ({ titleStr, onUserLogged }) => {
+const Form = ({ titleStr }) => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
+  const dispatch = useDispatch();
 
-  const handleSubmit =  (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
       usuario: usernameRef.current.value,
@@ -15,19 +18,19 @@ const Form = ({ titleStr, onUserLogged }) => {
     };
 
     onLogin(data)
-    .then( user => {
-      console.log("user on then",user);
-        onUserLogged(user);
-       
+      .then((user) => {
+        console.log("user on then", user);
+        sessionStorage.setItem("loggedUser", JSON.stringify(user));
+        dispatch(onUserLogged(user));
+        // onUserLogged(user);
       })
-      .catch( error => {
+      .catch((error) => {
         console.error(error);
       });
 
+    // const loggedData = onLogin(data);
 
-      // const loggedData = onLogin(data);
-
-      // onUserLogged(loggedData);
+    // onUserLogged(loggedData);
   };
 
   return (

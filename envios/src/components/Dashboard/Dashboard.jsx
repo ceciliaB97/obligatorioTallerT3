@@ -1,29 +1,30 @@
 import "./Dashboard.css";
-import React, { useEffect, useState } from "react";
-import { getListaEnvios,getCategorias } from "../../services";
+import React, { useEffect } from "react";
+import { getListaEnvios, getCategorias } from "../../services";
 import ListaEnviosContent from "./ListaEnvios/ListaEnvios";
+import { useDispatch, useSelector } from "react-redux";
+import { onLoadEnvios, onLoadCategorias } from "../../containers/App/actions";
 
-const Dashboard = ({ userLogged }) => {
-  const [listaEnvios, setListaEnvios] = useState([]);
-  const [listaCateg, setListaCategorias] = useState([]);
+const Dashboard = () => {
+  const userLogged = useSelector((state) => state.userLogged);
+  const envios = useSelector((state) => state.envios);
+  const categorias = useSelector((state) => state.categorias); //pasar a otro componente
+  const dispatch = useDispatch();
+
   useEffect(() => {
     (async () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
-        setListaEnvios(listaEnvios.envios);
+        dispatch(onLoadEnvios(listaEnvios));
 
         const categoriasData = await getCategorias(userLogged.apiKey);
-        setListaCategorias(categoriasData.categorias);
-
+        dispatch(onLoadCategorias(categoriasData));
       } catch (error) {
         console.log(error.message);
       }
     })();
   }, []);
 
-  console.log("Categorias2", listaCateg);
-  console.log("envios", listaEnvios);
-  
   return (
     <div className="container-fluid dashboard">
       <h1 className="d-flex justify-content-center">Dashboard</h1>
@@ -33,7 +34,7 @@ const Dashboard = ({ userLogged }) => {
         <div className="col-9">
           <div className="row">
             <div className="col-12">
-              <ListaEnviosContent listaEnvios={listaEnvios} />
+              <ListaEnviosContent listaEnvios={envios} />
             </div>
           </div>
         </div>

@@ -12,10 +12,10 @@ const onLogin = (data) => {
       if (response.status === 200) {
         return response.json();
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al hacer login",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -36,10 +36,10 @@ const onRegister = (data) => {
       if (response.status === 200) {
         return response.json();
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al hacer el registro",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -61,10 +61,10 @@ const getListaEnvios = (data) => {
       if (response.status === 200) {
         return response.json();
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al traer los envíos",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -87,10 +87,10 @@ const onAgregarEnvio = ( {dataEnvio,apiKey}) => {
       if (response.status === 200) {
         return response.json(); /*{ "idEnvio": _,"mensaje": "_", "codigo": _}*/ 
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al traer los envíos",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -117,10 +117,10 @@ const onEliminarEnvio = ( {dataEnvio,apiKey}) => {
           "mensaje": "Envío eliminado con éxito"
       }*/ 
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al tratar de eliminar el envio",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -144,10 +144,10 @@ const getCiudadOrigen = ({ciudadOrigen,apiKey}) => {
       if (response.status === 200) {
         return response.json();
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al traer los envíos",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -170,10 +170,10 @@ const getCategorias = (apiKey) => {
       if (response.status === 200) {
         return response.json();
       } else
-        return {
+        return Promise.reject({
           message: "Ha occurrido un error al traer las categorias",
           status: response.status,
-        };
+        });
     })
     .catch((e) => {
       return {
@@ -182,4 +182,29 @@ const getCategorias = (apiKey) => {
     });
 };
 
-export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudadOrigen };
+//obtener la lista de todas las categorias
+const getDepartamentos = (apiKey) => {
+  return fetch(`${BASE_URL}/departamentos.php`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      "apiKey": `${apiKey}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        return response.json();
+      } else
+        return Promise.reject({
+          message: "Ha occurrido un error al traer las categorias",
+          status: response.status,
+        });
+    })
+    .catch((e) => {
+      return {
+        message: e.message,
+      };
+    });
+};
+
+export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudadOrigen, onEliminarEnvio, getDepartamentos };

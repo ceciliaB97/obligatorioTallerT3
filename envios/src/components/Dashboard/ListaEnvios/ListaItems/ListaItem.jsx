@@ -9,6 +9,8 @@ const ListaEnviosItem = ({
   precio,
 }) => {
 
+  console.log("envio id", id);
+
   // const data = {
   //   ...userLogged, ciudad_origen, ciudad_destino
   // };

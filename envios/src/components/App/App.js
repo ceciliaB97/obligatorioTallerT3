@@ -3,22 +3,20 @@ import "./App.css";
 import LoginContent from "../Login";
  import RegisterContent from "../Register";
 import Dashboard from "../Dashboard";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux';
 import { AlertDialog } from "../Error";
 
 function App() {
-  const [userLogged, setUserLogged] = useState(null);
+  const userLogged = useSelector((state) => state.userLogged);
 
-  const onUserLogged = (user) => {
-    if (user && user.apiKey) {
-      console.log('user aslkdjflkasd',user)
-      setUserLogged(user);
+  // const [userLogged, setUserLogged] = useState(null);
+
+  useEffect(() => {
+    if (userLogged !== null) {
+     console.log("usuario ", userLogged);
     }
-    else {
-      //si no hay apiKey es un error
-      setUserLogged(null);
-    }
-  };
+  }, [userLogged]);
 
 const [register, setRegister] = useState(false);
 
@@ -44,10 +42,10 @@ function handleErrorCallback(error) {
        { (!register ? <a className="link link-primary" href="#" onClick={onClickRegister}>Sign Up!</a> : <></> )}
      </div>
       {userLogged === null ? (
-         ( !register ? <LoginContent titleStr="SuperEnvios Login" onUserLogged={onUserLogged} />  : 
+         ( !register ? <LoginContent titleStr="SuperEnvios Login"/>  : 
          <RegisterContent  callback={(err) => handleErrorCallback(err)}/>)
       ) : (
-        <Dashboard userLogged={userLogged} />
+        <Dashboard />
       )}
 
     <AlertDialog title={errorTitle} content={errorContent}></AlertDialog>
