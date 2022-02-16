@@ -104,7 +104,7 @@ const onAgregarEnvio = ( {dataEnvio,apiKey}) => {
 };
 
 //Eliminar un envio existente
-const onEliminarEnvio = ( {dataEnvio,apiKey}) => {
+const onEliminarEnvio = (dataEnvio,apiKey) => {
   return fetch(`${BASE_URL}/envios.php`, {
     method: "DELETE",
     body: JSON.stringify(dataEnvio),

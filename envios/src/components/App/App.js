@@ -61,14 +61,13 @@ function App() {
     console.log("logout");
     sessionStorage.removeItem("loggedUser");
     dispatch(onUserLogged(null));
-    userLogged = null;
   }
   return (
     <>
       <div className="justify-content-center row">
       { 
          userLogged!=null ?<div className="text-left col-12 mt-3">
-           <Link onClick={() => logout()}>
+           <Link to="#" onClick={() => logout()}>
             Logout
           </Link> </div> : <></>
         }

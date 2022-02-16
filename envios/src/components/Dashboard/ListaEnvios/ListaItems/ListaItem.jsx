@@ -16,7 +16,10 @@ const ListaEnviosItem = ({
 
   const onHandleDelete = async () => {
     try {
-      await onEliminarEnvio(id, userLogged.apiKey);
+      const res = await onEliminarEnvio({idEnvio: id }, userLogged.apiKey);
+      console.log("delete envio",res);
+      //TODO: Agregar validacion de statusCode
+      
       dispatch(onDeleteEnvio(id));
     } catch (error) {
       alert(error.message);
