@@ -3,6 +3,7 @@ import {
   ON_LOAD_ENVIOS,
   ON_LOAD_CATEGORIAS,
   ON_ADD_ENVIO,
+  ON_LOAD_CIUDAD,
   ON_DELETE_ENVIO,
   ON_LOG_OUT,
 } from "./constants";
@@ -13,7 +14,8 @@ const userLogged = localData ? JSON.parse(localData) : null;
 const initialState = {
   userLogged: userLogged,
   envios: [],
-  categorias:[]
+  categorias: [],
+  ciudad: ""
 };
 
 const appReducer = (state = initialState, action) => {
@@ -25,6 +27,8 @@ const appReducer = (state = initialState, action) => {
       return { ...state, envios: payload };
     case ON_LOAD_CATEGORIAS:
       return { ...state, categorias: payload };
+    case ON_LOAD_CIUDAD:
+      return { ...state, ciudad: payload };
     case ON_ADD_ENVIO:
       return { ...state, envios: [...state.envios, payload] };
     case ON_DELETE_ENVIO:

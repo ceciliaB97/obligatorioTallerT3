@@ -13,6 +13,7 @@ const ListaEnviosContent = ({ listaEnvios }) => {
           <th scope="col">Peso</th>
           <th scope="col">Distancia</th>
           <th scope="col">Total</th>
+          <th scope="col">Eliminar</th>
         </tr>
       </thead>
       <tbody>

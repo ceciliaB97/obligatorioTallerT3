@@ -5,6 +5,7 @@ import {
   ON_ADD_ENVIO,
   ON_DELETE_ENVIO,
   ON_LOG_OUT,
+  ON_LOAD_CIUDAD
 } from "./constants";
 
 const onUserLogged = (payload) => {
@@ -13,6 +14,10 @@ const onUserLogged = (payload) => {
     payload: payload,
   };
 };
+
+const onLoadCiudad = (ciudad) => {
+  return {type: ON_LOAD_CIUDAD, payload: ciudad}
+}
 
 const onLoadEnvios = (envios) => {
   return { type: ON_LOAD_ENVIOS, payload: envios };
@@ -41,4 +46,4 @@ const onLogout = () => {
   };
 };
 
-export { onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onLogout, onLoadCategorias };
+export { onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onLogout, onLoadCategorias, onLoadCiudad };

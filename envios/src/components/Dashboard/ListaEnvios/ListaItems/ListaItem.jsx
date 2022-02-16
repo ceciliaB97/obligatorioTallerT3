@@ -1,4 +1,8 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { onDeleteEnvio, onLoadCiudad } from "../../../../containers/App/actions";
+import { onEliminarEnvio, getCiudad } from "../../../../services";
 
 const ListaEnviosItem = ({
   id,
@@ -8,39 +12,32 @@ const ListaEnviosItem = ({
   distancia,
   precio,
 }) => {
+  const userLogged = useSelector((state) => state.userLogged);
+  const dispatch = useDispatch();
 
-  console.log("envio id", id);
-
-  // const data = {
-  //   ...userLogged, ciudad_origen, ciudad_destino
-  // };
-
-  // const [ciudadOrigen, setCiudadOrigen] = useState("");
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const ciudadOrigen = await getCiudadOrigen(data);
-  //       setCiudadOrigen(ciudadOrigen.ciudades.nombre);
-  //     } catch (error) {
-  //       console.log(error.message);
-  //     }
-  //   })();
-  //   // eslint-disable-next-line
-  // }, []);
-
-  // const [ciudadDestino, setciudadDestino] = useState("");
+  const onHandleDelete = async () => {
+    try {
+      await onEliminarEnvio(id, userLogged.apiKey);
+      dispatch(onDeleteEnvio(id));
+    } catch (error) {
+      alert(error.message);
+    }
+  };
 
   // useEffect(() => {
   //   (async () => {
   //     try {
-  //       const ciudadDestino = await getciudadDestino(data);
-  //       setListaEnvios(ciudadDestino.ciudades.nombre);
+  //       const ciudadOrigen = await getCiudad(ciudad_origen, userLogged.apiKEy);
+  //       console.log('ciudad Origen',ciudadOrigen);
+  //       dispatch(onLoadCiudad(ciudadOrigen.ciudades.nombre));
+
+  //       const ciudadDestino = await getCiudad(ciudad_destino, userLogged.apiKey);
+  //       console.log('ciudad Desitno',ciudadDestino);
+  //       dispatch(onLoadCiudad(ciudadOrigen.ciudades.nombre));
   //     } catch (error) {
   //       console.log(error.message);
   //     }
   //   })();
-  //   // eslint-disable-next-line
   // }, []);
 
   return (
@@ -51,6 +48,11 @@ const ListaEnviosItem = ({
       <td>{peso}kg</td>
       <td>{distancia}mts</td>
       <td>${precio}</td>
+      <td>
+        <button className="btn btn-danger" onClick={onHandleDelete}>
+          Delete
+        </button>
+      </td>
     </tr>
   );
 };

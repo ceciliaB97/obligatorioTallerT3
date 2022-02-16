@@ -132,7 +132,7 @@ const onEliminarEnvio = ( {dataEnvio,apiKey}) => {
 
 //data = { ciudadOrigen, apiKey }
 
-const getCiudadOrigen = ({ciudadOrigen,apiKey}) => {
+const getCiudad = ({ciudadOrigen,apiKey}) => {
   return fetch(`${BASE_URL}/ciudades.php?idDepartamento=${ciudadOrigen}`, {
     method: "GET",
     headers: {
@@ -207,4 +207,4 @@ const getDepartamentos = (apiKey) => {
     });
 };
 
-export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudadOrigen, onEliminarEnvio, getDepartamentos };
+export { onLogin, onRegister,onAgregarEnvio,getCategorias, getListaEnvios, getCiudad, onEliminarEnvio, getDepartamentos };
