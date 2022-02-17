@@ -7,21 +7,20 @@ import { onLoadEnvios, onLoadCategorias } from "../../containers/App/actions";
 import Header from "../Header";
 
 const Dashboard = () => {
-  const userLogged = useSelector((state) => state.userLogged);
-
-  if (userLogged === null || !userLogged.apiKey) {
-  }
-
   const envios = useSelector((state) => state.envios);
-  const categorias = useSelector((state) => state.categorias); //pasar a otro componente
+  //const categorias = useSelector((state) => state.categorias); //pasar a otro componente
+  const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
-
   useEffect(() => {
     (async () => {
+
       try {
         const listaEnvios = await getListaEnvios(userLogged);
         console.log("listaEnviosGET", listaEnvios);
-        dispatch(onLoadEnvios(listaEnvios.envios.filter(envios => (envios.ciudad_origen >= 129771 && envios.ciudad_origen <= 129893)  && (envios.ciudad_destino >= 129771 && envios.ciudad_destino <= 129893))));
+        dispatch(onLoadEnvios(listaEnvios.envios));
+
+        /*.filter(envios => (envios.ciudad_origen >= 129771 && envios.ciudad_origen <= 129893) 
+         && (envios.ciudad_destino >= 129771 && envios.ciudad_destino <= 129893))*/
 
         const categoriasData = await getCategorias(userLogged.apiKey);
         console.log("categoriasData", categoriasData);

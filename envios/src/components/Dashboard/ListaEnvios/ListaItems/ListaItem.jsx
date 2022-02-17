@@ -33,8 +33,8 @@ const ListaEnviosItem = ({
   return (
     <tr>
       <th scope="row">{id}</th>
-      <td>{ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre}</td>
-      <td>{ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre}</td>
+      <td>{ (ciudades.find(ciudad => ciudad.id === ciudad_origen) || {nombre:""}).nombre}</td>
+      <td>{ (ciudades.find(ciudad => ciudad.id === ciudad_destino) || {nombre:""}) .nombre}</td>
       <td>{peso}kg</td>
       <td>{distancia}mts</td>
       <td>${precio}</td>
