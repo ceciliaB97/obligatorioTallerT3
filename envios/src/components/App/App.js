@@ -4,17 +4,13 @@ import LoginContent from "../Login";
 import RegisterContent from "../Register";
 import Dashboard from "../Dashboard";
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { AlertDialog } from "../Error";
-import { Link, Route, Switch, useHistory, useLocation } from "react-router-dom";
+import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import PrivateRoute from "../PrivateRoute";
-import { onUserLogged } from "../../containers/App/actions";
 
 function App() {
   const userLogged = useSelector((state) => state.userLogged);
-
-  const [register, setRegister] = useState(false);
-
   const history = useHistory();
   const { pathname } = useLocation();
 
@@ -32,19 +28,8 @@ function App() {
     }
   }, [userLogged]);
 
-  useEffect(() => {
-    if (register) {
-      const location = userLogged == null ? pathname : "/register";
-      history.push(location);
-    }
-  }, [register]);
-
   let [errorTitle, setErrorTitle] = useState("");
   let [errorContent, setErrorContent] = useState("");
-
-  const onClickRegister = () => {
-    setRegister(!register);
-  };
 
   function handleErrorCallback(error) {
     console.log("handleErrorMessage", error);
@@ -53,14 +38,7 @@ function App() {
 
     setTimeout(document.getElementById("openDialogBtn").click(), 200);
   }
-  /*<a className="link link-primary" href="#" onClick={onClickRegister}</a> : <></> )}*/
-  const dispatch = useDispatch();
 
-  function logout() {
-    console.log("logout");
-    sessionStorage.removeItem("loggedUser");
-    dispatch(onUserLogged(null));
-  }
   return (
     <>
       <Switch>
