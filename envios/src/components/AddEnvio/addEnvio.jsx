@@ -5,6 +5,7 @@ import { onAddEnvio } from "../../containers/App/actions";
 import { onAgregarEnvio } from "../../services";
 //import AutoComplete from "../Autocomplete/Autocomplete";
 import { MenuItem, Select } from "@mui/material";
+import { useHistory } from "react-router-dom";
 //import { Autocomplete } from "@mui/material";
 
 const AddEnvio = () => {
@@ -77,6 +78,9 @@ const AddEnvio = () => {
     return distanciaKM;
   };
 
+
+  const history = useHistory();
+
   const onHandleAddEnvio = async (e) => {
     e.preventDefault();
 
@@ -108,9 +112,11 @@ const AddEnvio = () => {
       try {
         // Enviar a la API
         const response = await onAgregarEnvio(envio, userLogged.apiKey);
-        console.log(response);
         // Actualizar el store
         dispatch(onAddEnvio(response));
+        
+        history.push('/dashboard');
+
       } catch (error) {
         alert(error.message);
       }
