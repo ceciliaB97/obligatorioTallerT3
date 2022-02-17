@@ -53,6 +53,9 @@ const ListaEnviosItem = ({
       </tr>
     );
   }
+  else {
+    return <></>
+  }
 };
 
 export default ListaEnviosItem;

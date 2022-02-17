@@ -9,6 +9,7 @@ import { AlertDialog } from "../Error";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import PrivateRoute from "../PrivateRoute";
 import AddEnvio from "../AddEnvio";
+import Header from "../Header";
 
 function App() {
   const userLogged = useSelector((state) => state.userLogged);
@@ -42,6 +43,7 @@ function App() {
 
   return (
     <>
+
       <Switch>
         <Route path="/" exact>
           <LoginContent />
@@ -53,6 +55,7 @@ function App() {
           <RegisterContent callback={(err) => handleErrorCallback(err)} />
         </Route>
         <Route path="/addEnvio" exact>
+          <Header />
           <AddEnvio />
         </Route>
         <PrivateRoute path="/dashboard" component={Dashboard} />

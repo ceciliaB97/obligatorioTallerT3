@@ -6,6 +6,7 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
   const onHandleLogout = () => {
     sessionStorage.removeItem("loggedUser");
+    sessionStorage.clear();
     dispatch(onLogout());
   };
   return (

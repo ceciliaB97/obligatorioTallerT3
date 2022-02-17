@@ -21,9 +21,12 @@ const Dashboard = () => {
         console.log("listaEnviosGET", listaEnvios);
         dispatch(onLoadEnvios(listaEnvios.envios));
         
-        const categoriasData = await getCategorias(userLogged.apiKey);
-        console.log("categoriasData", categoriasData);
-        dispatch(onLoadCategorias(categoriasData.categorias));
+        if (sessionStorage.getItem("categData")==null) {
+          const categoriasData = await getCategorias(userLogged.apiKey);
+          console.log("categoriasData", categoriasData);  
+          sessionStorage.setItem("categData",JSON.stringify(categoriasData.categorias));
+          dispatch(onLoadCategorias(categoriasData.categorias));
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -32,7 +35,6 @@ const Dashboard = () => {
 
   return (
     <div className="container-fluid dashboard">
-      <Header />
       <h1 className="d-flex justify-content-center">Dashboard</h1>
       <br />
       <div className="row">

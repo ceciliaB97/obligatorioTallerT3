@@ -22,7 +22,7 @@ console.log("suggestions",suggestions);
     );
 
     setInput(e.target.value);
-    console.log("filtered suggestions",unLinked);
+    //console.log("filtered suggestions",unLinked);
 
     setFilteredSuggestions(unLinked);
     setActiveSuggestionIndex(0);

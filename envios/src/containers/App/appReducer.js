@@ -10,13 +10,29 @@ import {
 } from "./constants";
 
 const localData = sessionStorage.getItem("loggedUser");
+const categData = sessionStorage.getItem("categData");
+const ciudadesData = sessionStorage.getItem("ciudadesData");
+
 const userLogged = localData ? JSON.parse(localData) : null;
+console.log("categData",categData);
+
+
+let categ = [];
+let ciudades = [];
+try {
+categ = categData && categData!=null && categData!=undefined ? JSON.parse(categData) : [];
+ciudades = categData && ciudadesData!=null ? JSON.parse(ciudadesData) : [];
+}
+catch(e) {
+ //TODO: POR QUE REVIENTA ? 
+ // alert("ERROR AL CARGAR LOS DATOS LA API REVENTO!!!")
+}
 
 const initialState = {
   userLogged: userLogged,
   envios: [],
-  categorias: [],
-  ciudades: [],
+  categorias: categ,
+  ciudades: ciudades,
   ciudad: ""
 };
 

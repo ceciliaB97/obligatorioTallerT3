@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import { Redirect, Route } from 'react-router-dom'
+import Header from '../Header';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = useSelector(state => state.userLogged);
@@ -8,6 +9,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   if (user!==null && user.apiKey) {
     return (
       <Route>
+        <Header />
         <Component {...rest} />
       </Route>
     )

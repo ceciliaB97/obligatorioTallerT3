@@ -19,7 +19,9 @@ const NavBar = () => {
           </Link>
         </li>
         <li className="nav-item">
-          Graficos
+          <Link className="nav-link" to="#">
+            Graficos
+          </Link>
         </li>
       </ul>
     </div>

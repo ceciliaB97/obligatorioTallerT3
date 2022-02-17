@@ -3,67 +3,108 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDistance } from "geolib";
 import { onAddEnvio } from "../../containers/App/actions";
 import { onAgregarEnvio } from "../../services";
-import AutoComplete from "../Autocomplete/Autocomplete";
+//import AutoComplete from "../Autocomplete/Autocomplete";
+import { MenuItem, Select } from "@mui/material";
 //import { Autocomplete } from "@mui/material";
 
 const AddEnvio = () => {
+
+  const pesoInput = useRef();
   const userLogged = useSelector((state) => state.userLogged);
   const ciudades = useSelector((state) => state.ciudades);
-  const suggestions = ciudades.map(c=>c.nombre);
-  
-  console.log("suggestionsAddenvio",suggestions);
+  const categorias = useSelector((state) => state.categorias);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const ciudadOrigenInput = useRef();
-  const ciudadDestinoInput = useRef();
-  const pesoInput = useRef();
-  const precioInput = useRef();
+  const PRECIO_INITIAL=50;
 
-  //   const _calculateDistance = () => {
-  //     const distance = getDistance(
-  //       {
-  //         latitude: -34.764879999999998005932866362854838371276855468755,
-  //         longitude: -56.36449999999999960209606797434389591217041015625,
-  //       },
-  //       {
-  //         latitude: -34.6345900000000028740032576024532318115234375,
-  //         longitude: -56.6173900000000003274180926382541656494140625,
-  //       }
-  //     );
+  const [ciudadOrigen, setCiudadOrigen] = React.useState("");
+  const [ciudadDestino, setCiudadDestino] = React.useState("");
+  const [categoriaSel, setCategoria] = React.useState("");
+  const [distanciaVal, setDistancia] = React.useState("");
+  const [precioVal,setPrecio] = React.useState(PRECIO_INITIAL);
 
-  //     return distance / 1000;
-  //   };
+  const onChangePeso =(e) => {
+    const peso = e.target.value;
+    setPrecio(PRECIO_INITIAL+50*(distanciaVal/100) + 10*peso);
+  }
+  const handleChangeCateg = (e) => {
+    setCategoria(e.target.value);
+  };
+
+  const [origen, setOrigen] = React.useState(null);
+  const [destino, setDestino] = React.useState(null);
+
+  const handleChangeCiudadOrigen = (e) => {
+    setCiudadOrigen(e.target.value);
+    const origObj = ciudades.find((ciudad) => ciudad.id == e.target.value);
+    setOrigen(origObj);
+
+    if (origObj != null && destino != null) {
+      const dist = _calcularDistanciaCiudades(origObj, destino);
+      setDistancia(dist);
+    }
+  };
+
+  const handleChangeCiudadDestino = (e) => {
+    setCiudadDestino(e.target.value);
+    const destObj = ciudades.find((ciudad) => ciudad.id == e.target.value);
+    setDestino(destObj);
+
+    if (origen != null && destObj != null) {
+      const dist = _calcularDistanciaCiudades(origen, destObj);
+      setDistancia(dist);
+    }
+  };
+
+
+  const _calcularDistanciaCiudades = (ciudad1, ciudad2) => {
+    const distance = getDistance(
+      {
+        latitude: ciudad1.latitud,
+        longitude: ciudad1.longitud,
+      },
+      {
+        latitude: ciudad2.latitud,
+        longitude: ciudad2.longitud,
+      }
+    );
+
+    const distanciaKM=distance / 1000;
+
+    setPrecio(PRECIO_INITIAL+50*(distanciaKM/100) + 10*pesoInput.current.value);
+
+    return distanciaKM;
+  };
 
   const onHandleAddEnvio = async (e) => {
     e.preventDefault();
 
-    const ciudadOrigen = ciudadOrigenInput.current.value;
-    const ciudadDestino = ciudadDestinoInput.current.value;
     const peso = pesoInput.current.value;
-    const precio = precioInput.current.value;
+    const precio = precioVal;
 
     if (
       ciudadOrigen !== "" &&
       ciudadDestino !== "" &&
       peso !== "" &&
-      precio !== ""
+      precio !== "" &&
+      origen != null &&
+      destino != null
     ) {
-
-      const origen = ciudades.find(e=>e.nombre == ciudadOrigen);
-      const destino = ciudades.find(e=>e.nombre == ciudadDestino);
-      console.log("origen",origen);
-      console.log("destino",destino);
       const envio = {
         idUsuario: userLogged.id,
         idCiudadOrigen: origen.id,
         idCiudadDestino: destino.id,
         peso: peso,
-        distancia: 2.32, //calculate distance
+        distancia: distanciaVal, //calculate distance
         precio: precio,
-        idCategoria: 5,
+        idCategoria: categoriaSel.id,
       };
-     
+
+      setDistancia(envio.distancia);
+
+      console.log("distancia", envio.distancia);
+
       try {
         // Enviar a la API
         const response = await onAgregarEnvio(envio, userLogged.apiKey);
@@ -76,51 +117,103 @@ const AddEnvio = () => {
     }
   };
 
-  /*       <input
-          type="text"
-          className="form-control"
-          id="ciudadOrigenInput"
-          placeholder="Ciudad Origen"
-          ref={ciudadOrigenInput}
-        />*/
   return (
     <form className="container-fluid row mt-4 w-100 justify-content-center">
       <div className="col-6">
-        <label htmlFor="ciudadOrigenInput">Ciudad Origen</label>
+        <label id="ciudadOrigenLabel" htmlFor="ciudadOrigenSelect">
+          Ciudad Origen
+        </label>
         <br />
- 
-        <AutoComplete id="ciudadOrigenInput" suggestions={suggestions}
-        placeholderText="Ciudad Origen"
-        ref={ciudadOrigenInput} 
-        ></AutoComplete>
+        <Select
+          className="form-control"
+          labelId="ciudadOrigenLabel"
+          id="ciudadOrigenSelect"
+          value={ciudadOrigen}
+          label="Ciudad Origen"
+          onChange={handleChangeCiudadOrigen}
+        >
+          {ciudades!=null ? ciudades.map((ciudad, index) => (
+            <MenuItem key={index} value={ciudad.id}>
+              {ciudad.nombre}
+            </MenuItem>
+          )): <></>}
+        </Select>
 
-        <label htmlFor="ciudadDestinoInput">Ciudad Destino</label>
         <br />
+        <label id="ciudadDestinoLabel" htmlFor="ciudadDestinoSelect">
+          Ciudad Destino
+        </label>
+        <br />
+        <Select
+          className="form-control"
+          labelId="ciudadDestinoLabel"
+          id="ciudadDestinoSelect"
+          value={ciudadDestino}
+          label="Ciudad Destino"
+          onChange={handleChangeCiudadDestino}
+        >
+          {ciudades!=null ? ciudades.map((ciudad, index) => (
+            <MenuItem key={index} value={ciudad.id}>
+              {ciudad.nombre}
+            </MenuItem>
+          )) : <></>
+        }
+        </Select>
 
-        <AutoComplete id="ciudadDestinoInput" suggestions={suggestions}
-        placeholderText="Ciudad Destino"
-        ref={ciudadDestinoInput} 
-        ></AutoComplete>
-        
+        <br />
         <label htmlFor="pesoInput">Peso</label>
         <br />
         <input
-          type="text"
+          type="number"
+          min="0"
           className="form-control"
           id="pesoInput"
           placeholder="Peso.."
           ref={pesoInput}
+          onChange={onChangePeso}
+          
         />
+        <label id="categLabel" htmlFor="categSelect">
+          Categoria
+        </label>
+        <br />
+        <Select
+          className="form-control"
+          labelId="categLabel"
+          id="categSelect"
+          value={categoriaSel}
+          label="Categoria"
+          onChange={handleChangeCateg}
+        >
+          {categorias!= null ? categorias.map((categ, index) => (
+            <MenuItem key={index} value={categ.id}>
+              {categ.nombre}
+            </MenuItem>
+          )) : <></>}
+        </Select>
+        <br />
+        
         <label htmlFor="precioInput">Precio</label>
         <br />
         <input
-          type="text"
+          type="number"
           className="form-control"
           id="precioInput"
-          placeholder="Precio.."
-          ref={precioInput}
+          value={precioVal}
+          disabled
         />
 
+        <br />
+        <label>Distancia</label>
+        <br />
+        <input
+          className="form-control"
+          type="text"
+          disabled
+          value={distanciaVal}
+        ></input>
+
+        <br />
         <br />
         <button
           type="submit"
@@ -134,13 +227,4 @@ const AddEnvio = () => {
   );
 };
 
-/*
-<input
-          type="text"
-          className="form-control"
-          id="ciudadDestinoInput"
-          placeholder="Ciudad Destino"
-          ref={ciudadDestinoInput}
-        />
-*/
 export default AddEnvio;
