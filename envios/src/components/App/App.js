@@ -25,9 +25,8 @@ function App() {
           ? pathname
           : "/dashboard/list";
       history.push(location);
-    }
-    else {
-      if (pathname!=="login") {
+    } else {
+      if (pathname !== "login") {
         history.push("/login");
       }
     }
@@ -64,33 +63,18 @@ function App() {
   }
   return (
     <>
-      <div className="justify-content-center row">
-      { 
-         userLogged!=null ?<div className="text-left col-12 mt-3">
-           <Link to="#" onClick={() => logout()}>
-            Logout
-          </Link> </div> : <></>
-        }
-        
-       { userLogged ==null ? <div id="container" className="text-right col-12 mt-3">
-          <Link to="/register">Sign Up!</Link>
-        </div> : <></>
-      }
-      </div>
-      {
-        <Switch>
-          <Route path="/" exact>
-            <LoginContent />
-          </Route>
-          <Route path="/login" exact>
-            <LoginContent />
-          </Route>
-          <Route path="/register" exact>
-            <RegisterContent callback={(err) => handleErrorCallback(err)} />
-          </Route>
-          <PrivateRoute path="/dashboard" component={Dashboard} />
-        </Switch>
-      }
+      <Switch>
+        <Route path="/" exact>
+          <LoginContent />
+        </Route>
+        <Route path="/login" exact>
+          <LoginContent />
+        </Route>
+        <Route path="/register" exact>
+          <RegisterContent callback={(err) => handleErrorCallback(err)} />
+        </Route>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+      </Switch>
 
       <AlertDialog title={errorTitle} content={errorContent}></AlertDialog>
     </>

@@ -5,7 +5,7 @@ import { formStyle, submitStyle } from "./LoginStyle";
 import { useDispatch } from "react-redux";
 import { onUserLogged } from "../../../containers/App/actions";
 
-const Form = ({ titleStr }) => {
+const Form = () => {
   const usernameRef = React.useRef();
   const passwordRef = React.useRef();
   const dispatch = useDispatch();
@@ -35,7 +35,9 @@ const Form = ({ titleStr }) => {
 
   return (
     <>
-      <h1 className="navbar justify-content-center text-info">{titleStr}</h1>
+      <div className="justify-content-center text-center">
+        <h2>Sign up</h2>
+      </div>
       <form style={formStyle} onSubmit={handleSubmit}>
         <Field ref={usernameRef} label="Username:" type="text" />
         <Field ref={passwordRef} label="Password:" type="password" />

@@ -62,7 +62,6 @@ export const FormRegister = ({callback}) => {
     <div className="card">
       <div className="justify-content-center text-center">
         <h2>Sign up</h2>
-        <span>Bienvenido {userNameValue}</span>
       </div>
       <section className="card-body">
         <form onSubmit={handleSubmit}>
