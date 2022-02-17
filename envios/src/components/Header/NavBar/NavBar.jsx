@@ -14,6 +14,11 @@ const NavBar = () => {
           </Link>
         </li>
         <li className="nav-item">
+          <Link className="nav-link" to={`/addEnvio`}>
+            Agregar Envio
+          </Link>
+        </li>
+        <li className="nav-item">
           Graficos
         </li>
       </ul>

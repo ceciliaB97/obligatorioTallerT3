@@ -1,44 +1,55 @@
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onAddEnvio } from "../../../containers/App/actions";
+import { onAddEnvio } from "../../containers/App/actions";
 import { onAgregarEnvio } from "../../../../services";
-import { getDistance } from 'geolib';
+import { getDistance } from "geolib";
 
-const EnvioForm = () => {
+const addEnvio = () => {
+  const userLogged = useSelector((state) => state.userLogged);
+  const ciudades = useSelector((state) => state.ciudades);
+  const dispatch = useDispatch()
+
   const ciudadOrigenInput = useRef();
   const ciudadDestinoInput = useRef();
   const pesoInput = useRef();
   const precioInput = useRef();
-  const userLogged = useSelector((state) => state.userLogged);
-  const ciudades = useSelector((state) => state.ciudades);
-  const dispatch = useDispatch();
 
-//   const _calculateDistance = () => {
-//     const distance = getDistance(
-//       {
-//         latitude: -34.764879999999998005932866362854838371276855468755,
-//         longitude: -56.36449999999999960209606797434389591217041015625,
-//       },
-//       {
-//         latitude: -34.6345900000000028740032576024532318115234375,
-//         longitude: -56.6173900000000003274180926382541656494140625,
-//       }
-//     );
+  //   const _calculateDistance = () => {
+  //     const distance = getDistance(
+  //       {
+  //         latitude: -34.764879999999998005932866362854838371276855468755,
+  //         longitude: -56.36449999999999960209606797434389591217041015625,
+  //       },
+  //       {
+  //         latitude: -34.6345900000000028740032576024532318115234375,
+  //         longitude: -56.6173900000000003274180926382541656494140625,
+  //       }
+  //     );
 
-//     return distance / 1000;
-//   };
+  //     return distance / 1000;
+  //   };
 
   const onHandleAddEnvio = async (e) => {
     e.preventDefault();
 
-    if (title !== "") {
+    const ciudadOrigen = ciudadOrigenInput.current.value;
+    const ciudadDestino = ciudadDestinoInput.current.value;
+    const peso = pesoInput.current.value;
+    const precio = precioInput.current.value;
+
+    if (
+      ciudadOrigen !== "" &&
+      ciudadDestino !== "" &&
+      peso !== "" &&
+      precio !== ""
+    ) {
       const envio = {
         idUsuario: userLogged.id,
-        idCiudadOrigen: ciudadOrigenInput,
-        idCiudadDestino: ciudadDestinoInput,
-        peso: pesoInput,
+        idCiudadOrigen: ciudadOrigen,
+        idCiudadDestino: ciudadDestino,
+        peso: peso,
         distancia: 2.32, //calculate distance
-        precio: precioInput,
+        precio: precio,
         idCategoria: 5,
       };
       try {
@@ -106,4 +117,4 @@ const EnvioForm = () => {
   );
 };
 
-export default TodoForm;
+export default addEnvio;
