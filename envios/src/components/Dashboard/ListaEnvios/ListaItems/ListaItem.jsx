@@ -12,19 +12,24 @@ const ListaEnviosItem = ({
   precio,
 }) => {
   const userLogged = useSelector((state) => state.userLogged);
+  const ciudades = useSelector((state) => state.ciudades);
   const dispatch = useDispatch();
 
   const onHandleDelete = async () => {
     try {
-      const res = await onEliminarEnvio({idEnvio: id }, userLogged.apiKey);
-      console.log("delete envio",res);
+      const res = await onEliminarEnvio({ idEnvio: id }, userLogged.apiKey);
+      console.log("delete envio", res);
       //TODO: Agregar validacion de statusCode
-      
+
       dispatch(onDeleteEnvio(id));
     } catch (error) {
       alert(error.message);
     }
   };
+
+  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre);
+  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre);
+
 
   return (
     <tr>

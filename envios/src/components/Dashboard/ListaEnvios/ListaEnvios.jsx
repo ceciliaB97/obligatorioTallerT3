@@ -1,31 +1,24 @@
 import React from "react";
 import ListaEnviosItem from "./ListaItems";
+import { onLoadCiudades } from "../../../containers/App/actions";
+import { getAllCiudades } from "../../../services";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { onLoadCiudades, onUserLogged } from "../../../containers/App/actions";
-import { getAllCiudades } from "../../../services";
 
 const ListaEnviosContent = ({ listaEnvios }) => {
   const userLogged = useSelector((state) => state.userLogged);
-  const ciudades = useSelector((state) => state.ciudades);
   const dispatch = useDispatch();
 
   useEffect(() => {
     (async () => {
       try {
-      //  console.log("userLogged",userLogged);
         const allCiudades = await getAllCiudades(userLogged);
-        //console.log("ciudades", allCiudades);
-
         dispatch(onLoadCiudades(allCiudades.ciudades));
-
       } catch (error) {
         console.log(error.message);
       }
     })();
   }, []);
-
-  //console.log(ciudades);
 
   return (
     <table className="table">

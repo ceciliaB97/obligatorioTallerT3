@@ -4,12 +4,12 @@ import { getListaEnvios, getCategorias } from "../../services";
 import ListaEnviosContent from "./ListaEnvios/ListaEnvios";
 import { useDispatch, useSelector } from "react-redux";
 import { onLoadEnvios, onLoadCategorias } from "../../containers/App/actions";
+import Header from "../Header";
 
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.userLogged);
 
-  if (userLogged ===null || !userLogged.apiKey) {
-    
+  if (userLogged === null || !userLogged.apiKey) {
   }
 
   const envios = useSelector((state) => state.envios);
@@ -20,11 +20,11 @@ const Dashboard = () => {
     (async () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
-        console.log('listaEnviosGET',listaEnvios);
+        console.log("listaEnviosGET", listaEnvios);
         dispatch(onLoadEnvios(listaEnvios.envios));
 
         const categoriasData = await getCategorias(userLogged.apiKey);
-        console.log('categoriasData',categoriasData);
+        console.log("categoriasData", categoriasData);
         dispatch(onLoadCategorias(categoriasData.categorias));
       } catch (error) {
         console.log(error.message);
@@ -34,10 +34,10 @@ const Dashboard = () => {
 
   return (
     <div className="container-fluid dashboard">
+      <Header />
       <h1 className="d-flex justify-content-center">Dashboard</h1>
       <br />
       <div className="row">
-        <div className="col-3">Aca navbar con routing</div>
         <div className="col-9">
           <div className="row">
             <div className="col-12">

@@ -175,11 +175,13 @@ const getAllCiudades = ({apiKey}) => {
       console.log('response',response);
       if (response.status === 200) {
         return response.json();
-      } else
+      } else {
         return Promise.reject({
           message: `Ha occurrido un error al traer las ciudades: ${response.statusText}`,
           status: response.status,
         });
+      }
+        
     })
     .catch((e) => {
       return {

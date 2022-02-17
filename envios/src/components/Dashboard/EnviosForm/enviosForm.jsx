@@ -10,7 +10,7 @@ const EnvioForm = () => {
   const pesoInput = useRef();
   const precioInput = useRef();
   const userLogged = useSelector((state) => state.userLogged);
-
+  const ciudades = useSelector((state) => state.ciudades);
   const dispatch = useDispatch();
 
 //   const _calculateDistance = () => {
