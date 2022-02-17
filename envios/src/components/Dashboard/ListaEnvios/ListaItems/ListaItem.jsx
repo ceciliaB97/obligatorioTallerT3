@@ -27,15 +27,14 @@ const ListaEnviosItem = ({
     }
   };
 
-  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre);
-  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre);
+  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre, ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre);
 
 
   return (
     <tr>
       <th scope="row">{id}</th>
-      <td>{ciudad_origen}</td>
-      <td>{ciudad_destino}</td>
+      <td>{ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre}</td>
+      <td>{ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre}</td>
       <td>{peso}kg</td>
       <td>{distancia}mts</td>
       <td>${precio}</td>
