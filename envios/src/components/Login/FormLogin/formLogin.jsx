@@ -36,7 +36,7 @@ const Form = () => {
   return (
     <>
       <div className="justify-content-center text-center">
-        <h2>Sign up</h2>
+        <h2>Login</h2>
       </div>
       <form style={formStyle} onSubmit={handleSubmit}>
         <Field ref={usernameRef} label="Username:" type="text" />

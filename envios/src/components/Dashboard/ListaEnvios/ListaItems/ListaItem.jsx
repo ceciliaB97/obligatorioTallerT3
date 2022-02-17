@@ -27,24 +27,32 @@ const ListaEnviosItem = ({
     }
   };
 
-  // console.log(ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre, ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre);
+  const ciudadOrigen = ciudades.find((ciudad) => ciudad.id === ciudad_origen);
+  const ciudadDestino = ciudades.find((ciudad) => ciudad.id === ciudad_destino);
+  if (
+    ciudadOrigen != null &&
+    ciudadDestino != null
+  ) {
+    // ciudades not null
 
-
-  return (
-    <tr>
-      <th scope="row">{id}</th>
-      <td>{ciudades.find(ciudad => ciudad.id === ciudad_origen).nombre}</td>
-      <td>{ciudades.find(ciudad => ciudad.id === ciudad_destino).nombre}</td>
-      <td>{peso}kg</td>
-      <td>{distancia}mts</td>
-      <td>${precio}</td>
-      <td>
-        <button className="btn btn-danger" onClick={onHandleDelete}>
-          Delete
-        </button>
-      </td>
-    </tr>
-  );
+    return (
+      <tr>
+        <th scope="row">{id}</th>
+        <td>{ciudadOrigen.nombre}</td>
+        <td>
+          {ciudadDestino.nombre}
+        </td>
+        <td>{peso}kg</td>
+        <td>{distancia}mts</td>
+        <td>${precio}</td>
+        <td>
+          <button className="btn btn-danger" onClick={onHandleDelete}>
+            Delete
+          </button>
+        </td>
+      </tr>
+    );
+  }
 };
 
 export default ListaEnviosItem;

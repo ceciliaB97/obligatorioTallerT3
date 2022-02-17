@@ -12,9 +12,9 @@ const Header = () => {
           <a className="navbar-brand" href="#">
             <img
               src={logo}
-              width="30"
+              width="auto"
               height="30"
-              className="d-inline-block align-top"
+              className="d-inline-block align-top mx-3"
               alt=""
             />
             SuperEnvios

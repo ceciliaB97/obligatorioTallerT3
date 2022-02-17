@@ -21,8 +21,8 @@ const Dashboard = () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
         console.log("listaEnviosGET", listaEnvios);
-        dispatch(onLoadEnvios(listaEnvios.envios.filter(envios => (envios.ciudad_origen >= 129771 && envios.ciudad_origen <= 129893)  && (envios.ciudad_destino >= 129771 && envios.ciudad_destino <= 129893))));
-
+        dispatch(onLoadEnvios(listaEnvios.envios));
+        
         const categoriasData = await getCategorias(userLogged.apiKey);
         console.log("categoriasData", categoriasData);
         dispatch(onLoadCategorias(categoriasData.categorias));
