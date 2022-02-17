@@ -2,7 +2,7 @@ import "../RegisterStyle.css";
 import { onRegister } from "../../../services";
 import React, { useRef, useState } from "react";
 
-export const FormRegister = ({callback}) => {
+export const FormRegister = ({ callback }) => {
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
   const inputPasswordConfirmRef = useRef();
@@ -16,38 +16,41 @@ export const FormRegister = ({callback}) => {
 
     var reg = /^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/; //
     if (!reg.test(password)) {
-        callback({title:'Error with password validation', 
-        message:'Password must contain 8 characters and at least one number, one letter and one unique character',
-          closeMsg:"Close"});
-    
-    }
-    else 
-    if (password !== passwordConfirm) {
-       callback({title:'Error with password validation', 
-       message:'Passwords must match',
-         closeMsg:"Close"});
-
-    } 
-    
-    else {
+      callback({
+        title: "Error with password validation",
+        message:
+          "Password must contain 8 characters and at least one number, one letter and one unique character",
+        closeMsg: "Close",
+      });
+    } else if (password !== passwordConfirm) {
+      callback({
+        title: "Error with password validation",
+        message: "Passwords must match",
+        closeMsg: "Close",
+      });
+    } else {
       const data = {
         usuario: username,
-        password: password
+        password: password,
       };
-      
+
       onRegister(data)
         .then((user) => {
           if (user.status !== 200) {
-              callback({title:'Error during sign up process', 
-              message:`There was an error trying to register the user statusCode: ${user.status}`,
-                closeMsg:"Close"});
+            callback({
+              title: "Error during sign up process",
+              message: `There was an error trying to register the user statusCode: ${user.status}`,
+              closeMsg: "Close",
+            });
           }
           console.log("user on then", user);
         })
         .catch((error) => {
-            callback({title:'Error during sign up process', 
-            message:error,
-              closeMsg:"Close"});
+          callback({
+            title: "Error during sign up process",
+            message: error,
+            closeMsg: "Close",
+          });
         });
     }
   };
@@ -97,8 +100,10 @@ export const FormRegister = ({callback}) => {
             required
           />
           <br />
-          <button className="btn btn-primary">Register</button>
-          <br />
+          <div className="justify-content-center text-center">
+            <button className="btn btn-primary btn-lg btn-block">Register</button>
+          </div>
+
           <br />
         </form>
       </section>
