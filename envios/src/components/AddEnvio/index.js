@@ -1,2 +1,2 @@
-import addEnvio from "./addEnvio";
-export default addEnvio;
+import AddEnvio from "./AddEnvio";
+export default AddEnvio;

@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { AlertDialog } from "../Error";
 import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import PrivateRoute from "../PrivateRoute";
-import addEnvio from "../AddEnvio/addEnvio";
+import AddEnvio from "../AddEnvio";
 
 function App() {
   const userLogged = useSelector((state) => state.userLogged);
@@ -53,7 +53,7 @@ function App() {
           <RegisterContent callback={(err) => handleErrorCallback(err)} />
         </Route>
         <Route path="/addEnvio" exact>
-          <addEnvio />
+          <AddEnvio />
         </Route>
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>

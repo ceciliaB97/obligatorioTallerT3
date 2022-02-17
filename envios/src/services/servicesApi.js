@@ -77,7 +77,7 @@ const getListaEnvios = (data) => {
 };
 
 //Agregar un nuevo envio
-const onAgregarEnvio = ( {dataEnvio,apiKey}) => {
+const onAgregarEnvio = (dataEnvio,apiKey) => {
   return fetch(`${BASE_URL}/envios.php`, {
     method: "POST",
     body: JSON.stringify(dataEnvio),

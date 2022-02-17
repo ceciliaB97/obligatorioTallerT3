@@ -1,3 +1,5 @@
+// eslint-disable react-hooks/exhaustive-deps
+
 import "./Dashboard.css";
 import React, { useEffect } from "react";
 import { getListaEnvios, getCategorias } from "../../services";
