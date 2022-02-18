@@ -10,6 +10,7 @@ import { Route, Switch, useHistory, useLocation } from "react-router-dom";
 import PrivateRoute from "../PrivateRoute";
 import AddEnvio from "../AddEnvio";
 import Header from "../Header";
+import Charts from "../Charts";
 
 function App() {
   const userLogged = useSelector((state) => state.userLogged);
@@ -57,6 +58,10 @@ function App() {
         <Route path="/addEnvio" exact>
           <Header />
           <AddEnvio />
+        </Route>
+        <Route path="/graficos" exact>
+          <Header />
+          <Charts />
         </Route>
         <PrivateRoute path="/dashboard" component={Dashboard} />
       </Switch>

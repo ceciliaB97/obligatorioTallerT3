@@ -2,12 +2,19 @@
 
 import "./Dashboard.css";
 import React, { useEffect } from "react";
-import { getListaEnvios, getCategorias, getDepartamentos } from "../../services";
+import {
+  getListaEnvios,
+  getCategorias,
+  getDepartamentos,
+} from "../../services";
 import ListaEnviosContent from "./ListaEnvios/ListaEnvios";
 import { useDispatch, useSelector } from "react-redux";
-import { onLoadEnvios, onLoadCategorias, onLoadDepartamentos } from "../../containers/App/actions";
+import {
+  onLoadEnvios,
+  onLoadCategorias,
+  onLoadDepartamentos,
+} from "../../containers/App/actions";
 import GastoTotal from "./GastoTotal";
-import { Box } from "@material-ui/core";
 import CalcularDistancia from "./CalcularDistancia";
 import TopDep from "./TopDep/TopDep";
 
@@ -18,7 +25,6 @@ const Dashboard = () => {
   const ciudades = useSelector((state) => state.ciudades);
   const departamentos = useSelector((state) => state.departamentos);
 
-
   const dispatch = useDispatch();
   useEffect(() => {
     (async () => {
@@ -26,6 +32,11 @@ const Dashboard = () => {
         const listaEnvios = await getListaEnvios(userLogged);
         console.log("listaEnviosGET", listaEnvios);
         dispatch(onLoadEnvios(listaEnvios.envios));
+
+        sessionStorage.setItem(
+          "enviosData",
+          JSON.stringify(listaEnvios.envios)
+        );
 
         if (sessionStorage.getItem("categData") == null) {
           const categoriasData = await getCategorias(userLogged.apiKey);
@@ -57,20 +68,23 @@ const Dashboard = () => {
     <>
       {/* <h1 className="d-flex justify-content-center">Dashboard</h1> */}
       <div className="parent">
-
-      <div className="div1 text-center">
+        <div className="div1 text-center">
           <GastoTotal envios={envios} />
-      </div>
-      <div className="div2 text-center">
+        </div>
+        <div className="div2 text-center">
           <CalcularDistancia ciudades={ciudades} />
+        </div>
+        <div className="div3 text-center">
+          <TopDep
+            departamentos={departamentos}
+            envios={envios}
+            ciudades={ciudades}
+          />
+        </div>
+        <div className="div4 text-center">
+          <ListaEnviosContent listaEnvios={envios} />
+        </div>
       </div>
-      <div className="div3 text-center">
-          <TopDep departamentos={departamentos} envios={envios} ciudades={ciudades} />
-      </div>
-      <div className="div4 text-center">
-            <ListaEnviosContent listaEnvios={envios} />
-      </div>
-    </div>
     </>
   );
 };

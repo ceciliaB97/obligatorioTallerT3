@@ -53,10 +53,10 @@
 
     .div1,.div2,.div3,.div4 {
         border:1px dotted lightgray;
-        border-radius: 2%;
         margin: 5px 0 5px 0;
        /* padding:10% 0 10% 0;*/
         margin-right: 5px;
+        border-radius: 10%;
     }
 
    /* .table td, .table th {

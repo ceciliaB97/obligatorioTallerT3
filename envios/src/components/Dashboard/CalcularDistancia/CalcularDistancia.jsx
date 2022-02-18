@@ -106,7 +106,7 @@ const CalcularDistancia = ({ ciudades }) => {
         className="form-control text-center"
         type="text"
         disabled
-        value={distanciaVal}
+        value={distanciaVal> 0 ? distanciaVal + ' KM' : ''}
       ></input>
     </div>
   );

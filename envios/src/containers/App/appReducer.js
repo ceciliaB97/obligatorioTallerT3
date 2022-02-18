@@ -11,6 +11,7 @@ import {
 } from "./constants";
 
 const localData = sessionStorage.getItem("loggedUser");
+const enviosData =sessionStorage.getItem("enviosData") 
 const categData = sessionStorage.getItem("categData");
 const ciudadesData = sessionStorage.getItem("ciudadesData");
 const depsData = sessionStorage.getItem("depsData");
@@ -18,10 +19,15 @@ const depsData = sessionStorage.getItem("depsData");
 const userLogged = localData ? JSON.parse(localData) : null;
 console.log("categData", categData);
 
+let envios = [];
 let deps = [];
 let categ = [];
 let ciudades = [];
 try {
+  envios = 
+  enviosData && enviosData != null && enviosData != undefined
+    ? JSON.parse(enviosData)
+    : [];
   categ =
     categData && categData != null && categData != undefined
       ? JSON.parse(categData)
@@ -36,7 +42,7 @@ try {
 
 const initialState = {
   userLogged: userLogged,
-  envios: [],
+  envios: envios,
   categorias: categ,
   ciudades: ciudades,
   departamentos: deps,
