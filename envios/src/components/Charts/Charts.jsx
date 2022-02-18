@@ -8,9 +8,8 @@ const Charts = (props) => {
 
   const envios = useSelector((state) => state.envios);
   const ciudades = useSelector((state) => state.ciudades);
+  const departamentos = useSelector((state) => state.departamentos);
 
-  console.log("envios",envios);
-  console.log("ciudades",ciudades);
 
   //const dataCiudades = ciudades.map(c=> c.nombre);
 
@@ -21,7 +20,8 @@ const Charts = (props) => {
     const cantEnviosCiudad = envios.filter(e=>e.ciudad_origen == ciudad.id).length;
     if (cantEnviosCiudad > 0) {
       values.push(cantEnviosCiudad);
-      keys.push(ciudad.nombre);
+      const depEnCiudad = departamentos.find(e=>e.id == ciudad.id_departamento) || {nombre:''};
+      keys.push(`${ciudad.nombre}/${depEnCiudad.nombre}`);
       dict[ciudad.nombre] = cantEnviosCiudad;
     }
 

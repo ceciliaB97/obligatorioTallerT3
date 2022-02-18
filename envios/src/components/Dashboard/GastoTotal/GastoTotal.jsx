@@ -5,11 +5,17 @@ const GastoTotal = ({ envios }) => {
   console.log("envios gasto total",envios);
   let totalEnvios = 0;
 
+  try {
+    
+if (envios!= null) {
   for (let index = 0; index < envios.length; index++) {
     const element = envios[index];
     totalEnvios+=element.precio;
   }
-  try {
+
+  totalEnvios =totalEnvios.toFixed(2);
+}
+
     return (
       <>
         <h6>Gasto Total de Envios</h6>

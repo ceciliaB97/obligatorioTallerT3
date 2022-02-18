@@ -8,10 +8,10 @@
 .gastoTotal {
     height: 150px;
 }*/
-.container-fluid {
+/*.container-fluid {
     padding: 0px;
     margin:0px;
-}
+}*/
 
 .row {
     /*margin-right: 0px;
@@ -21,8 +21,8 @@
 
 .parent {
     display: grid;
-    grid-template-columns: 15% repeat(3, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: 20% repeat(3, 1fr);
+    grid-template-rows: 100px 120px 200px 50px repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     }
@@ -52,11 +52,15 @@
     }
 
     .div1,.div2,.div3,.div4 {
-        border:1px dotted lightgray;
+        border:1px dotted grey;
         margin: 5px 0 5px 0;
        /* padding:10% 0 10% 0;*/
         margin-right: 5px;
-        border-radius: 10%;
+        border-radius: 5px;
+    }
+
+    .div4 {
+        border-radius: 20px;
     }
 
    /* .table td, .table th {
