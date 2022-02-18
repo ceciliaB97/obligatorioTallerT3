@@ -4,14 +4,6 @@
     padding: 10%;
    /* display: none;*/
 }
-/*
-.gastoTotal {
-    height: 150px;
-}*/
-/*.container-fluid {
-    padding: 0px;
-    margin:0px;
-}*/
 
 .row {
     /*margin-right: 0px;
@@ -25,7 +17,7 @@
     grid-template-rows: 100px 120px 200px 50px repeat(2, 1fr);
     grid-column-gap: 0px;
     grid-row-gap: 0px;
-    }
+}
 
     /*gasto total envios
     */

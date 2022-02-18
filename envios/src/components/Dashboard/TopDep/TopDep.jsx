@@ -47,9 +47,7 @@ const TopDep = ({ departamentos, envios, ciudades }) => {
             dep.totalEnvios += enviosCiudad.length;
           }
         });
-        //
       });
-      //
     });
     console.log(topDepartamentos.sort((a, b) => b.totalEnvios - a.totalEnvios));
 
