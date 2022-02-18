@@ -53,44 +53,25 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="container-fluid dashboard">
-      <h1 className="d-flex justify-content-center">Dashboard</h1>
-      <br />
-      <div className="row">
-        <Box
-          className="col-4 p-3 text-center m-2"
-          component="span"
-          sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
-        >
+    // <div className="container-fluid dashboard">
+    <>
+      {/* <h1 className="d-flex justify-content-center">Dashboard</h1> */}
+      <div className="parent">
+
+      <div className="div1 text-center">
           <GastoTotal envios={envios} />
-        </Box>
-        <div className="col-7">
-          <div className="row">
-            <div className="col-12">
-              <ListaEnviosContent listaEnvios={envios} />
-            </div>
-          </div>
-        </div>
       </div>
-      <div className="row">
-      <Box
-          className="col-4 p-3 text-center m-2"
-          component="span"
-          sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
-        >
+      <div className="div2 text-center">
           <CalcularDistancia ciudades={ciudades} />
-        </Box>
       </div>
-      <div className="row">
-      <Box
-          className="col-4 p-3 text-center m-2"
-          component="span"
-          sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
-        >
+      <div className="div3 text-center">
           <TopDep departamentos={departamentos} envios={envios} ciudades={ciudades} />
-        </Box>
+      </div>
+      <div className="div4 text-center">
+            <ListaEnviosContent listaEnvios={envios} />
       </div>
     </div>
+    </>
   );
 };
 

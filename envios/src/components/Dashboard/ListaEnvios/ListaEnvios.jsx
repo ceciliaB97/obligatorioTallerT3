@@ -32,6 +32,8 @@ const ListaEnviosContent = ({ listaEnvios }) => {
   }, []);
 
   return (
+    <>
+    <h4><strong>Lista de Envios</strong></h4>
     <table className="table">
       <thead>
         <tr>
@@ -54,6 +56,7 @@ const ListaEnviosContent = ({ listaEnvios }) => {
         )}
       </tbody>
     </table>
+    </>
   );
 };
 
