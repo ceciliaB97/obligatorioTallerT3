@@ -38,7 +38,7 @@ const AddEnvio = () => {
 
   const handleChangeCiudadOrigen = (e) => {
     setCiudadOrigen(e.target.value);
-    const origObj = ciudades.find((ciudad) => ciudad.id == e.target.value);
+    const origObj = ciudades.find((ciudad) => ciudad.id === e.target.value);
     setOrigen(origObj);
 
     if (origObj != null && destino != null) {
@@ -49,7 +49,7 @@ const AddEnvio = () => {
 
   const handleChangeCiudadDestino = (e) => {
     setCiudadDestino(e.target.value);
-    const destObj = ciudades.find((ciudad) => ciudad.id == e.target.value);
+    const destObj = ciudades.find((ciudad) => ciudad.id === e.target.value);
     setDestino(destObj);
 
     if (origen != null && destObj != null) {

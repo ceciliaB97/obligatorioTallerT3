@@ -7,25 +7,31 @@ import {
   ON_DELETE_ENVIO,
   ON_LOG_OUT,
   ON_LOAD_CIUDADES,
+  ON_LOAD_DEPARTAMENTOS
 } from "./constants";
 
 const localData = sessionStorage.getItem("loggedUser");
 const categData = sessionStorage.getItem("categData");
 const ciudadesData = sessionStorage.getItem("ciudadesData");
+const depsData = sessionStorage.getItem("depsData");
 
 const userLogged = localData ? JSON.parse(localData) : null;
-console.log("categData",categData);
+console.log("categData", categData);
 
-
+let deps = [];
 let categ = [];
 let ciudades = [];
 try {
-categ = categData && categData!=null && categData!=undefined ? JSON.parse(categData) : [];
-ciudades = categData && ciudadesData!=null ? JSON.parse(ciudadesData) : [];
-}
-catch(e) {
- //TODO: POR QUE REVIENTA ? 
- // alert("ERROR AL CARGAR LOS DATOS LA API REVENTO!!!")
+  categ =
+    categData && categData != null && categData != undefined
+      ? JSON.parse(categData)
+      : [];
+  ciudades =
+    ciudadesData && ciudadesData != null ? JSON.parse(ciudadesData) : [];
+  deps = depsData && depsData != null ? JSON.parse(depsData) : [];
+} catch (e) {
+  //TODO: POR QUE REVIENTA ?
+  // alert("ERROR AL CARGAR LOS DATOS LA API REVENTO!!!")
 }
 
 const initialState = {
@@ -33,7 +39,7 @@ const initialState = {
   envios: [],
   categorias: categ,
   ciudades: ciudades,
-  ciudad: ""
+  departamentos: deps,
 };
 
 const appReducer = (state = initialState, action) => {
@@ -47,6 +53,8 @@ const appReducer = (state = initialState, action) => {
       return { ...state, categorias: payload };
     case ON_LOAD_CIUDAD:
       return { ...state, ciudad: payload };
+      case ON_LOAD_DEPARTAMENTOS:
+        return { ...state, departamentos: payload };
     case ON_LOAD_CIUDADES:
       return { ...state, ciudades: payload };
     case ON_ADD_ENVIO:

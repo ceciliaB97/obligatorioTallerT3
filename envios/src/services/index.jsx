@@ -4,9 +4,9 @@ import {
   onAgregarEnvio,
   getCategorias,
   getListaEnvios,
-  getCiudad,
   onEliminarEnvio,
-  getAllCiudades
+  getAllCiudades,
+  getDepartamentos
 } from "./servicesApi";
 export {
   onLogin,
@@ -14,7 +14,7 @@ export {
   onAgregarEnvio,
   getCategorias,
   getListaEnvios,
-  getCiudad,
   onEliminarEnvio,
-  getAllCiudades
+  getAllCiudades,
+  getDepartamentos
 };
