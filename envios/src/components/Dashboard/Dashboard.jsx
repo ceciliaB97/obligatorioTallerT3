@@ -5,10 +5,11 @@ import React, { useEffect } from "react";
 import { getListaEnvios, getCategorias, getDepartamentos } from "../../services";
 import ListaEnviosContent from "./ListaEnvios/ListaEnvios";
 import { useDispatch, useSelector } from "react-redux";
-import { onLoadEnvios, onLoadCategorias } from "../../containers/App/actions";
+import { onLoadEnvios, onLoadCategorias, onLoadDepartamentos } from "../../containers/App/actions";
 import GastoTotal from "./GastoTotal";
 import { Box } from "@material-ui/core";
 import CalcularDistancia from "./CalcularDistancia";
+import TopDep from "./TopDep/TopDep";
 
 const Dashboard = () => {
   const envios = useSelector((state) => state.envios);
@@ -43,7 +44,7 @@ const Dashboard = () => {
             "depsData",
             JSON.stringify(depsData.departamentos)
           );
-          dispatch(onLoadCategorias(depsData.departamentos));
+          dispatch(onLoadDepartamentos(depsData.departamentos));
         }
       } catch (error) {
         console.log(error.message);
@@ -57,13 +58,13 @@ const Dashboard = () => {
       <br />
       <div className="row">
         <Box
-          className="col-3 p-3 text-center m-2"
+          className="col-4 p-3 text-center m-2"
           component="span"
           sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
         >
           <GastoTotal envios={envios} />
         </Box>
-        <div className="col-8">
+        <div className="col-7">
           <div className="row">
             <div className="col-12">
               <ListaEnviosContent listaEnvios={envios} />
@@ -73,11 +74,20 @@ const Dashboard = () => {
       </div>
       <div className="row">
       <Box
-          className="col-3 p-3 text-center m-2"
+          className="col-4 p-3 text-center m-2"
           component="span"
           sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
         >
           <CalcularDistancia ciudades={ciudades} />
+        </Box>
+      </div>
+      <div className="row">
+      <Box
+          className="col-4 p-3 text-center m-2"
+          component="span"
+          sx={{ p: 2, border: "1px solid grey", borderRadius: "5%"}}
+        >
+          <TopDep departamentos={departamentos} envios={envios} ciudades={ciudades} />
         </Box>
       </div>
     </div>
