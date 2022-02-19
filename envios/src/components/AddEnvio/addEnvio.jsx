@@ -102,7 +102,7 @@ const AddEnvio = () => {
         peso: peso,
         distancia: distanciaVal, //calculate distance
         precio: precio,
-        idCategoria: categoriaSel.id,
+        idCategoria: categoriaSel,
       };
 
       setDistancia(envio.distancia);
