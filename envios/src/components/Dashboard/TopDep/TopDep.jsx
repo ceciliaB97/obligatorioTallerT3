@@ -8,16 +8,6 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 
 const TopDep = ({ departamentos, envios, ciudades }) => {
-  //   console.log("ciudad", ciudades[0]);
-  //   console.log("envio", envios[0]);
-  //   console.log("dep", departamentos[0]);
-
-  //   departamentos.map((departamento) => ({
-  //     id: departamento.id,
-  //     nombre: departamento.nombre,
-  //     totalEnvios: 0,
-  //   }));
-
   //aqui se guarda la información final de departamento: id, nombre, totalEnvios
 
   try {
@@ -49,11 +39,12 @@ const TopDep = ({ departamentos, envios, ciudades }) => {
         });
       });
     });
-    console.log(topDepartamentos.sort((a, b) => b.totalEnvios - a.totalEnvios));
+
+    const numDepsRestar = departamentos.length - 5;
 
     topDepartamentos
       .sort((a, b) => b.totalEnvios - a.totalEnvios)
-      .splice(5, 14);
+      .splice(5, numDepsRestar);
 
     return (
       <>

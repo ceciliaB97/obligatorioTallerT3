@@ -13,9 +13,7 @@ const ListaEnviosContent = ({ listaEnvios }) => {
     (async () => {
       try {
         const checkSession = sessionStorage.getItem("ciudadesData");
-        console.log("checkSession",checkSession);
         if (checkSession ==undefined) {
-      //  if ( checkSession== null || checkSession=="" || !checkSession) {
           const allCiudades = await getAllCiudades(userLogged);
           sessionStorage.setItem(
             "ciudadesData",
@@ -24,7 +22,7 @@ const ListaEnviosContent = ({ listaEnvios }) => {
 
           dispatch(onLoadCiudades(allCiudades.ciudades));
         }
-        //}
+        
       } catch (error) {
         console.log(error.message);
       }

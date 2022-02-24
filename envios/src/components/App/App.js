@@ -35,7 +35,6 @@ function App() {
   let [errorContent, setErrorContent] = useState("");
 
   function handleErrorCallback(error) {
-    console.log("handleErrorMessage", error);
     setErrorTitle(error.title);
     setErrorContent(error.message);
 

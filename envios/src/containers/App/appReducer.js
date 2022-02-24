@@ -17,7 +17,6 @@ const ciudadesData = sessionStorage.getItem("ciudadesData");
 const depsData = sessionStorage.getItem("depsData");
 
 const userLogged = localData ? JSON.parse(localData) : null;
-console.log("categData", categData);
 
 let envios = [];
 let deps = [];

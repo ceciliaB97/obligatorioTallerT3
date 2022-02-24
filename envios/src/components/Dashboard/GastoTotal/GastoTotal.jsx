@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 const GastoTotal = ({ envios }) => {
-  console.log("envios gasto total", envios);
   let totalEnvios = 0;
 
   try {

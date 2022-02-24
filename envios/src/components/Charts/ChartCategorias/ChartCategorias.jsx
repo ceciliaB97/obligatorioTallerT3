@@ -7,13 +7,6 @@ const ChartCategorias = () => {
   const envios = useSelector((state) => state.envios);
   const categorias = useSelector((state) => state.categorias);
 
-  console.log(
-    "envios en CHART CATE",
-    envios,
-    "categorias en CHART CATE",
-    categorias
-  );
-
   let values = [];
   let keys = [];
 
@@ -22,8 +15,6 @@ const ChartCategorias = () => {
       (envio) => categoria.id === envio.id_categoria
     ).length;
 
-    console.log(cantEnviosCategorias);
-
     if (cantEnviosCategorias > 0) {
       //axis y valores, cantEnviosxCategorias
       values.push(cantEnviosCategorias);
@@ -31,8 +22,6 @@ const ChartCategorias = () => {
       keys.push(categoria.nombre);
     }
   });
-
-  console.log("values", values, "keys", keys);
 
   const state = {
     series: [

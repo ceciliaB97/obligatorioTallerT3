@@ -19,7 +19,6 @@ const Form = () => {
 
     onLogin(data)
       .then((user) => {
-        console.log("user on then", user);
         sessionStorage.setItem("loggedUser", JSON.stringify(user));
         dispatch(onUserLogged(user));
         // onUserLogged(user);

@@ -143,7 +143,6 @@ const getAllCiudades = ({ apiKey }) => {
     },
   })
     .then((response) => {
-      console.log("response", response);
       if (response.status === 200) {
         return response.json();
       } else {

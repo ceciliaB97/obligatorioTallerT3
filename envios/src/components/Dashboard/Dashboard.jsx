@@ -30,7 +30,6 @@ const Dashboard = () => {
     (async () => {
       try {
         const listaEnvios = await getListaEnvios(userLogged);
-        console.log("listaEnviosGET", listaEnvios);
         dispatch(onLoadEnvios(listaEnvios.envios));
 
         sessionStorage.setItem(
@@ -40,7 +39,6 @@ const Dashboard = () => {
 
         if (sessionStorage.getItem("categData") == null) {
           const categoriasData = await getCategorias(userLogged.apiKey);
-          console.log("categoriasData", categoriasData);
           sessionStorage.setItem(
             "categData",
             JSON.stringify(categoriasData.categorias)
@@ -50,7 +48,6 @@ const Dashboard = () => {
 
         if (sessionStorage.getItem("depsData") == null) {
           const depsData = await getDepartamentos(userLogged);
-          console.log("depsData", depsData);
           sessionStorage.setItem(
             "depsData",
             JSON.stringify(depsData.departamentos)

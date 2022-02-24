@@ -1,11 +1,14 @@
 import "../RegisterStyle.css";
 import { onRegister } from "../../../services";
 import React, { useRef, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 export const FormRegister = ({ callback }) => {
   const inputUsernameRef = useRef();
   const inputPasswordRef = useRef();
   const inputPasswordConfirmRef = useRef();
+  const history = useHistory();
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,14 +39,16 @@ export const FormRegister = ({ callback }) => {
 
       onRegister(data)
         .then((user) => {
-          if (user.status !== 200) {
+          if (user.codigo != 200 || user.codigo === undefined) {
+            console.log(user);
             callback({
               title: "Error during sign up process",
-              message: `There was an error trying to register the user statusCode: ${user.status}`,
+              message: `There was an error trying to register the user statusCode: ${user.codigo}`,
               closeMsg: "Close",
             });
+          } else {
+            history.push("/");
           }
-          console.log("user on then", user);
         })
         .catch((error) => {
           callback({

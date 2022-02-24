@@ -25,9 +25,13 @@ const AddEnvio = () => {
   const [distanciaVal, setDistancia] = React.useState("");
   const [precioVal,setPrecio] = React.useState(PRECIO_INITIAL);
 
+  const calculoPrecio = (dist, kg) => {
+    return PRECIO_INITIAL+50*((dist/100).toFixed(0)) + 10*kg;
+  }
+
   const onChangePeso =(e) => {
     const peso = e.target.value;
-    setPrecio(PRECIO_INITIAL+50*(distanciaVal/100) + 10*peso);
+    setPrecio(calculoPrecio(distanciaVal, peso));
   }
   const handleChangeCateg = (e) => {
     setCategoria(e.target.value);
@@ -72,8 +76,8 @@ const AddEnvio = () => {
     );
 
     const distanciaKM=distance / 1000;
-
-    setPrecio(PRECIO_INITIAL+50*(distanciaKM/100) + 10*pesoInput.current.value);
+    
+    setPrecio(calculoPrecio(distanciaKM, pesoInput.current.value));
 
     return distanciaKM;
   };
@@ -106,8 +110,6 @@ const AddEnvio = () => {
       };
 
       setDistancia(envio.distancia);
-
-      console.log("distancia", envio.distancia);
 
       try {
         // Enviar a la API
